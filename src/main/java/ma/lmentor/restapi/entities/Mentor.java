@@ -6,14 +6,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "mentors")
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode
-public class Mentor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Mentor extends Profile {
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -27,9 +24,9 @@ public class Mentor {
     @Column(name = "session_price")
     private double sessionPrice;
 
-    public Mentor(Integer id, String firstName, String lastName, String email, String phoneNumber,
+    public Mentor(Integer profileId, String firstName, String lastName, String email, String phoneNumber,
                              String title, String description, double sessionPrice) {
-        this.id = id;
+        super(profileId);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

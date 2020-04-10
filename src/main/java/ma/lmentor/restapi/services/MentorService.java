@@ -35,5 +35,4 @@ public class MentorService {
         var mentor = mentorRepository.findById(mentorId);
         return mentor.isPresent() ? Optional.of(mentorMapper.toMentorDetails(mentor.get())) : Optional.empty();
     }
-
 }

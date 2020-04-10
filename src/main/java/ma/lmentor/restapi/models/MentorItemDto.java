@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode
 public class MentorItemDto {
-    private Integer id;
+    private Integer profileId;
     private String fullName;
     private String title;
     private double sessionPrice;
 
-    public MentorItemDto(int id, String fullName, String title, double sessionPrice) {
-        this.id = id;
+    public MentorItemDto(int profileId, String fullName, String title, double sessionPrice) {
+        this.profileId = profileId;
         this.fullName = fullName;
         this.title = title;
         this.sessionPrice = sessionPrice;
