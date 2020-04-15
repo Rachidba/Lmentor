@@ -1,6 +1,7 @@
 package ma.lmentor.restapi.services;
 
 import ma.lmentor.restapi.entities.User;
+import ma.lmentor.restapi.exceptions.EmailAlreadyExistsException;
 import ma.lmentor.restapi.mappers.UserMapper;
 import ma.lmentor.restapi.models.RegistrationDto;
 import ma.lmentor.restapi.repositories.UserRepository;
@@ -24,6 +25,10 @@ public class UserService {
     }
 
     public User create(RegistrationDto registrationDto) {
+        if (userRepository.existsByUsername(registrationDto.getUsername()))
+            throw new EmailAlreadyExistsException("Email already used, try with an other email");
+
+        // TODO : Add transactional
         var user = userMapper.toUser(registrationDto);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         var savedUser = userRepository.save(user);

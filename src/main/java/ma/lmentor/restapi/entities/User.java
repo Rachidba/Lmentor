@@ -22,7 +22,7 @@ public class User {
     private boolean enabled = true;
     @Enumerated(EnumType.STRING)
     private RoleType role;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Profile profile;
 
     public User(String username, String password, RoleType role) {
