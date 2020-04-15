@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity(name = "mentors")
+@Entity
+@Table(name = "mentors")
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode
@@ -24,9 +25,9 @@ public class Mentor extends Profile {
     @Column(name = "session_price")
     private double sessionPrice;
 
-    public Mentor(Integer profileId, String firstName, String lastName, String email, String phoneNumber,
+    public Mentor(Integer profileId, User user, String firstName, String lastName, String email, String phoneNumber,
                              String title, String description, double sessionPrice) {
-        super(profileId);
+        super(profileId, user);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,5 +35,9 @@ public class Mentor extends Profile {
         this.title = title;
         this.description = description;
         this.sessionPrice = sessionPrice;
+    }
+
+    public Mentor(User user) {
+        super(user);
     }
 }

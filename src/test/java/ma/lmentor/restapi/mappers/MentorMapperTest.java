@@ -26,7 +26,8 @@ public class MentorMapperTest {
         String description = "A description";
         double sessionPrice = 100;
         var mentorData = new MentorCreationDto(firstName, lastName, email, phoneNumber, title, description, sessionPrice);
-        var expectedMentor = new Mentor(mentorId, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+//        var expectedMentor = new Mentor(mentorId, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+        var expectedMentor = new Mentor();
         var mentor = mentorMapper.toMentor(mentorData);
         Assertions.assertEquals(expectedMentor, mentor);
     }
@@ -41,7 +42,8 @@ public class MentorMapperTest {
         String title = "Software engineer";
         String description = "A description";
         double sessionPrice = 100;
-        var mentor = new Mentor(mentorId, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+//        var mentor = new Mentor(mentorId, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+        var mentor = new Mentor();
         var expectedMentorItem = new MentorItemDto(mentorId, firstName + lastName, title, sessionPrice);
         var mentorItem = mentorMapper.toMentorItem(mentor);
         Assertions.assertEquals(expectedMentorItem, mentorItem);
@@ -57,7 +59,8 @@ public class MentorMapperTest {
         String title = "Software engineer";
         String description = "A description";
         double sessionPrice = 100;
-        var mentor = new Mentor(mentorId, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+//        var mentor = new Mentor(mentorId, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+        var mentor = new Mentor();
         var expectedMentorDetails = new MentorDetailsDto(mentorId, firstName + lastName, email, phoneNumber, title, description, sessionPrice);
         var mentorItem = mentorMapper.toMentorDetails(mentor);
         Assertions.assertEquals(expectedMentorDetails, mentorItem);

@@ -1,5 +1,7 @@
 package ma.lmentor.restapi.services;
 
+import ma.lmentor.restapi.entities.Mentor;
+import ma.lmentor.restapi.entities.User;
 import ma.lmentor.restapi.mappers.MentorMapper;
 import ma.lmentor.restapi.models.MentorCreationDto;
 import ma.lmentor.restapi.models.MentorDetailsDto;
@@ -24,6 +26,9 @@ public class MentorService {
         var mentor = mentorMapper.toMentor(mentorData);
         var savedMentor = mentorRepository.save(mentor);
         return savedMentor == null ? Optional.empty() : Optional.of(mentorMapper.toMentorDetails(savedMentor));
+    }
+    public Mentor createEmpty(User user) {
+        return mentorRepository.save(new Mentor(user));
     }
 
     public List<MentorItemDto> GetAllMentors() {

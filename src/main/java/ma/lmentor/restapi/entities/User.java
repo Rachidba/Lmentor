@@ -6,23 +6,24 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import ma.lmentor.restapi.models.RoleType;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 public class User {
     @Id
-    private String username;
+    @Column(unique = true)
+    private String username; // the username is an email
     private String password;
     private boolean enabled = true;
     @Enumerated(EnumType.STRING)
     private RoleType role;
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
 
     public User(String username, String password, RoleType role) {
         this.username = username;
