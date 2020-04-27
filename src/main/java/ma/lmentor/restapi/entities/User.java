@@ -22,7 +22,7 @@ public class User {
     private boolean enabled = true;
     @Enumerated(EnumType.STRING)
     private RoleType role;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Profile profile;
 
     public User(String username, String password, RoleType role) {
@@ -36,5 +36,6 @@ public class User {
         this.password = user.password;
         this.enabled = user.enabled;
         this.role = user.role;
+        this.profile = user.profile;
     }
 }

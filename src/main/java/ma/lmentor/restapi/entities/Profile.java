@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -16,13 +15,24 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "profile_id")
-    private Integer profileId;
-
+    protected Integer profileId;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "user_id", nullable = false)
+    protected User user;
 
     public Profile(User user) {
         this.user = user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Integer getProfileId() {
+        return this.profileId;
+    }
+
+    public void setProfileId(Integer profileId) {
+        this.profileId = profileId;
     }
 }

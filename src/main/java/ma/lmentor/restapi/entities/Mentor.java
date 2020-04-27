@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "mentors")
@@ -24,7 +25,14 @@ public class Mentor extends Profile {
     private String phoneNumber;
     @Column(name = "session_price")
     private double sessionPrice;
+    @Column(name = "is_profile_completed")
+    private boolean isProfileCompleted;
+    @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
+    private Set<Education> educations;
+    @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
+    private Set<Experience> experiences;
 
+    // TODO Remove this
     public Mentor(Integer profileId, User user, String firstName, String lastName, String email, String phoneNumber,
                              String title, String description, double sessionPrice) {
         super(profileId, user);
@@ -39,5 +47,9 @@ public class Mentor extends Profile {
 
     public Mentor(User user) {
         super(user);
+    }
+
+    public Integer getProfileId() {
+        return profileId;
     }
 }

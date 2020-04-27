@@ -5,9 +5,11 @@ import ma.lmentor.restapi.exceptions.EmailAlreadyExistsException;
 import ma.lmentor.restapi.mappers.UserMapper;
 import ma.lmentor.restapi.models.RegistrationDto;
 import ma.lmentor.restapi.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -24,11 +26,11 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    @Transactional
     public User create(RegistrationDto registrationDto) {
         if (userRepository.existsByUsername(registrationDto.getUsername()))
             throw new EmailAlreadyExistsException("Email already used, try with an other email");
 
-        // TODO : Add transactional
         var user = userMapper.toUser(registrationDto);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         var savedUser = userRepository.save(user);
@@ -38,5 +40,11 @@ public class UserService {
 
     public Optional<User> get(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public Optional<User> getCurrentUser() {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        var currentUsername = auth.getName();
+        return this.get(currentUsername);
     }
 }

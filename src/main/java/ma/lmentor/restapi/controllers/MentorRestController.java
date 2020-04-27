@@ -1,5 +1,6 @@
 package ma.lmentor.restapi.controllers;
 
+import javassist.NotFoundException;
 import ma.lmentor.restapi.models.MentorCreationDto;
 import ma.lmentor.restapi.models.MentorDetailsDto;
 import ma.lmentor.restapi.models.MentorItemDto;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/mentors")
@@ -35,8 +37,14 @@ public class MentorRestController {
 
     @PostMapping
     public ResponseEntity<MentorDetailsDto> createMentor(@RequestBody MentorCreationDto mentorData) {
-        var saveResult = mentorService.Create(mentorData);
-        if (saveResult.isEmpty()) return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
-        return ResponseEntity.status(HttpStatus.CREATED).body(saveResult.get());
+        Optional<MentorDetailsDto> saveResult = null;
+        try {
+            saveResult = mentorService.Create(mentorData);
+            if (saveResult.isEmpty()) return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+            return ResponseEntity.status(HttpStatus.CREATED).body(saveResult.get());
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);
+        }
+
     }
 }

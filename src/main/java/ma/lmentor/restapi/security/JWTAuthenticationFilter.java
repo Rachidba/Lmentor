@@ -61,10 +61,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     public void successfulAuthentication(HttpServletRequest request,
-                                         HttpServletResponse response,
-                                         FilterChain chain,
-                                         Authentication auth) throws IOException, ServletException {
-        var currentUsername = ((UserDetails)auth.getPrincipal()).getUsername();
+                                        HttpServletResponse response,
+                                        FilterChain chain,
+                                        Authentication auth) throws IOException, ServletException {
+            var currentUsername = ((UserDetails)auth.getPrincipal()).getUsername();
         var jwtToken = JWT.create()
                 .withSubject(currentUsername)
                 .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.TOKEN_TTL))
@@ -76,8 +76,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        var currentUserProfile = userService.get(currentUsername).isEmpty() ? null : userService.get(currentUsername).get().getProfile();
-        var currentUserProfileAsJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(currentUsername);
+        var currentUser = userService.get(currentUsername);
+        var currentUserProfile = currentUser.isEmpty() ? null : currentUser.get().getProfile();
+        var currentUserProfileAsJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(currentUserProfile);
         out.print(currentUserProfileAsJson);
         out.flush();
     }

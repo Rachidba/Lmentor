@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode
@@ -15,6 +17,9 @@ public class MentorDetailsDto {
     private String email;
     private String phoneNumber;
     private double sessionPrice;
+    private boolean isProfileCompleted;
+    private Set<EducationDto> educations;
+    private Set<ExperienceDto> experiences;
 
     public MentorDetailsDto(Integer profileId, String fullName, String email, String phoneNumber,
                             String title, String description, double sessionPrice) {

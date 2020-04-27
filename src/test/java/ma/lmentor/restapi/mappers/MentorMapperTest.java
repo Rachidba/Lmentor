@@ -27,7 +27,8 @@ public class MentorMapperTest {
         String title = "Software engineer";
         String description = "A description";
         double sessionPrice = 100;
-        var mentorData = new MentorCreationDto(firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+        //var mentorData = new MentorCreationDto(firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+        var mentorData = new MentorCreationDto();
         var expectedMentor = new Mentor(mentorId, user, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
         var mentor = mentorMapper.toMentor(mentorData);
         Assertions.assertEquals(expectedMentor, mentor);
