@@ -8,10 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "students")
+@Table(name = "mentees")
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode
-public class Student extends Profile {
+public class Mentee extends Profile {
 
 }

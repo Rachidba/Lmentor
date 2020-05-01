@@ -12,13 +12,17 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode
 public class MentorCreationDto {
+    private GenderType gender;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
     private String title;
     private String description;
-    private double sessionPrice;
+    private String city;
+    private String job;
+    private String expertiseField;
+    // Add birthday
     private Set<EducationCreationDto> educations;
     private Set<ExperienceCreationDto> experiences;
 }

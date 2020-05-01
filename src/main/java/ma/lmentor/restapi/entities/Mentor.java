@@ -3,6 +3,7 @@ package ma.lmentor.restapi.entities;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import ma.lmentor.restapi.models.GenderType;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -27,10 +28,17 @@ public class Mentor extends Profile {
     private double sessionPrice;
     @Column(name = "is_profile_completed")
     private boolean isProfileCompleted;
+    private String city;
+    @Enumerated(EnumType.STRING)
+    private GenderType gender;
+    private String job;
+    @Column(name = "expertise_field")
+    private String expertiseFiled;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
     private Set<Education> educations;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
     private Set<Experience> experiences;
+    // Add birthday
 
     // TODO Remove this
     public Mentor(Integer profileId, User user, String firstName, String lastName, String email, String phoneNumber,
