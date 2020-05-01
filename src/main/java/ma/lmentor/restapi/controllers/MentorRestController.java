@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,15 +37,14 @@ public class MentorRestController {
     }
 
     @PostMapping
-    public ResponseEntity<MentorDetailsDto> createMentor(@RequestBody MentorCreationDto mentorData) {
+    public ResponseEntity<MentorDetailsDto> createMentor(@Valid @RequestBody MentorCreationDto mentorData) {
         Optional<MentorDetailsDto> saveResult = null;
         try {
-            saveResult = mentorService.Create(mentorData);
+            saveResult = this.mentorService.Create(mentorData);
             if (saveResult.isEmpty()) return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
             return ResponseEntity.status(HttpStatus.CREATED).body(saveResult.get());
         } catch (NotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(null);
         }
-
     }
 }

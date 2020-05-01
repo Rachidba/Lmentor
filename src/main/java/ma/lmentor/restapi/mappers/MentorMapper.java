@@ -11,6 +11,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface MentorMapper {
+    @Mapping(expression = "java(Double.valueOf(\"0\"))", target = "sessionPrice")
     Mentor toMentor(final MentorCreationDto mentor);
     @Mapping(expression = "java(mentor.getFirstName() + mentor.getLastName())", target = "fullName")
     MentorDetailsDto toMentorDetails(final Mentor mentor);
