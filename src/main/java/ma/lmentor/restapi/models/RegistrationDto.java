@@ -3,14 +3,17 @@ package ma.lmentor.restapi.models;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 public class RegistrationDto {
-    @NotNull(message = "Email is mandatory for account creation")
+    @NotEmpty(message = "Email is mandatory for account creation")
+    @Email(message = "Enter a valid email")
     private String username;
-    @NotNull(message = "Password is mandatory for account creation")
+    @NotEmpty(message = "Password is mandatory for account creation")
     private String password;
     @NotNull(message = "Role is mandatory for account creation")
     private RoleType role;

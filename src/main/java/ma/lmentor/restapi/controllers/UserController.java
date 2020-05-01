@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -18,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody RegistrationDto registrationDto) {
+    public void register(@Valid @RequestBody RegistrationDto registrationDto) {
         this.userService.create(registrationDto);
     }
 }
