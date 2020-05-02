@@ -1,5 +1,6 @@
 package ma.lmentor.restapi.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -11,29 +12,30 @@ import java.util.Set;
 @Entity
 @Table(name = "mentors")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @EqualsAndHashCode
 public class Mentor extends Profile {
+    @Enumerated(EnumType.STRING)
+    private GenderType gender;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    private String title;
-    private String description;
     @Column(unique = true)
     private String email;
     @Column(name = "phone_number")
     private String phoneNumber;
+    private String title;
+    private String description;
+    private String city;
+    private String job;
+    @Column(name = "expertise_field")
+    private String expertiseField;
     @Column(name = "session_price")
     private double sessionPrice;
     @Column(name = "is_profile_completed")
     private boolean isProfileCompleted;
-    private String city;
-    @Enumerated(EnumType.STRING)
-    private GenderType gender;
-    private String job;
-    @Column(name = "expertise_field")
-    private String expertiseFiled;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
     private Set<Education> educations;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)

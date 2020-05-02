@@ -2,6 +2,7 @@ package ma.lmentor.restapi.mappers;
 
 import ma.lmentor.restapi.entities.Mentor;
 import ma.lmentor.restapi.entities.User;
+import ma.lmentor.restapi.models.GenderType;
 import ma.lmentor.restapi.models.MentorCreationDto;
 import ma.lmentor.restapi.models.MentorDetailsDto;
 import ma.lmentor.restapi.models.MentorItemDto;
@@ -19,17 +20,21 @@ public class MentorMapperTest {
     @Test
     public void creationDtoToMentorTest() {
         Integer mentorId = null;
-        var user = new User();
+        var gender = GenderType.GENDER_MALE;
+        User user = null;
         String firstName = "Rachid";
         String lastName = "BAAZIZ";
         String email = "rachidbaaziz.contact@gmail.com";
         String phoneNumber = "+212777458294";
         String title = "Software engineer";
         String description = "A description";
-        double sessionPrice = 100;
-        //var mentorData = new MentorCreationDto(firstName, lastName, email, phoneNumber, title, description, sessionPrice);
-        var mentorData = new MentorCreationDto();
-        var expectedMentor = new Mentor(mentorId, user, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
+        String city = "Casablanca";
+        String job = "Employee";
+        String expertiseField = "Software engineering";
+        double sessionPrice = 0.0;
+        var mentorData = new MentorCreationDto(gender, firstName, lastName, email, phoneNumber, title, description, city, job, expertiseField, null, null);
+        //var mentorData = new MentorCreationDto();
+        var expectedMentor = new Mentor(gender, firstName, lastName, email, phoneNumber, title, description, city, job, expertiseField, sessionPrice, false, null, null);
         var mentor = mentorMapper.toMentor(mentorData);
         Assertions.assertEquals(expectedMentor, mentor);
     }
