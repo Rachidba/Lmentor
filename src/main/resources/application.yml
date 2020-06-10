@@ -3,13 +3,13 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://lmentorserver.mysql.database.azure.com:3306/lmentordb?useSSL=true&requireSSL=false
-    username: lmentorAdmin@lmentorserver
-    password: lmentorPassword01
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/lmentordb?useSSL=true
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       use-new-id-generator-mappings: true
     properties:
       hibernate:
