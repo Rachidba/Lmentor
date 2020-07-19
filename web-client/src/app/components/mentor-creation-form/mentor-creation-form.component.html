@@ -1,0 +1,59 @@
+<div class="container">
+    <h1>Completez la creation de votre compte</h1>
+    <form [formGroup]="mentorCreationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">Entrez votre Prenom *</label>
+        <input type="text" class="form-control" formControlName="firstName" id="firstName" [ngClass]="{ 'is-invalid': submitted && formControls.firstName.errors }">
+        <div *ngIf="submitted && formControls.firstName.errors" class="invalid-feedback">
+          <div *ngIf="formControls.firstName.errors.required">Le prenom est obligatoir</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Entrez votre nom *</label>
+        <input type="text" class="form-control" formControlName="lastName" id="lastName" [ngClass]="{ 'is-invalid': submitted && formControls.lastName.errors }">
+        <div *ngIf="submitted && formControls.lastName.errors" class="invalid-feedback">
+          <div *ngIf="formControls.lastName.errors.required">Le nom est obligatoir</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Entrez votre email de contact *</label>
+        <input type="text" class="form-control" formControlName="email" id="email" [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
+        <div *ngIf="submitted && formControls.email.errors" class="invalid-feedback">
+          <div *ngIf="formControls.email.errors.required">L'email est obligatoir</div>
+          <div *ngIf="formControls.email.errors.email">L'email doit etre une adresse email valide</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">Entrez votre numero de telephone</label>
+        <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber" [ngClass]="{ 'is-invalid': submitted && formControls.phoneNumber.errors }">
+      </div>
+
+
+      <div class="form-group">
+        <label for="title">Tilte *</label>
+        <input type="text" class="form-control" formControlName="title" id="title" [ngClass]="{ 'is-invalid': submitted && formControls.title.errors }">
+        <div *ngIf="submitted && formControls.title.errors" class="invalid-feedback">
+          <div *ngIf="formControls.title.errors.required">Le title est obligatoir</div>
+          <div *ngIf="formControls.title.errors.maxlength">Le titre ne doit pas depasser 50 caracteres</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" formControlName="description" id="description" [ngClass]="{ 'is-invalid': submitted && formControls.description.errors }"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="sessionPrice">Le prix d'une seance de 40 min *</label>
+        <input type="number" class="form-control" formControlName="sessionPrice" id="sessionPrice" [ngClass]="{ 'is-invalid': submitted && formControls.sessionPrice.errors }">
+        <div *ngIf="submitted && formControls.sessionPrice.errors" class="invalid-feedback">
+          <div *ngIf="formControls.sessionPrice.errors.required">Le prix de la seance est obligatoire est obligatoir</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success">Valider</button>
+    </form>
+</div>

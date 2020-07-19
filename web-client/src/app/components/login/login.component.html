@@ -1,0 +1,33 @@
+<div>
+    <h1>Connectez vous</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div fxLayout="row">
+        <div fxFlexOffset="10" fxFlex="70">
+          <mat-form-field class="full-width">
+            <mat-label>Entrez votre email</mat-label>
+            <input matInput type="text" formControlName="email" [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
+            <mat-error *ngIf="submitted && formControls.email.errors">
+              <mat-error *ngIf="formControls.email.errors.required">L'email est obligatoir</mat-error>
+              <mat-error *ngIf="formControls.email.errors.email">L'email doit etre une adresse email valide</mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlexOffset="10" fxFlex="70">
+          <mat-form-field class="full-width">
+            <mat-label>Choisissez un mot de passe</mat-label>
+            <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }">
+            <mat-error *ngIf="submitted && formControls.password.errors">
+                <mat-error *ngIf="formControls.password.errors.required">Le mot de passe est obligatoir</mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlexOffset="10" fxFlex="70" fxLayoutAlign="end">
+          <button color="accent" mat-raised-button type="submit">Se connecter</button>
+        </div>
+      </div>
+    </form>
+</div>

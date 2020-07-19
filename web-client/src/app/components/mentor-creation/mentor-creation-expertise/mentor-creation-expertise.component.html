@@ -1,0 +1,29 @@
+<app-wizard-step [title]="title" (previousStepClicked)="goToPreviousStep()" (nextStepClicked)="goToNextStep()">
+    <form [formGroup]="expertiseForm">
+        <div fxLayout="row">
+          <div fxFlexOffset="10" fxFlex="70">
+            <mat-form-field class="full-width">
+              <mat-label>Profession</mat-label>
+              <mat-select formControlName="job" [ngClass]="{ 'is-invalid': submitted && formControls.job.errors }" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let job of jobs" [value]="job">
+                  {{job}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="formControls.job.errors?.required">Merci de choisir votre profession</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div fxFlexOffset="10" fxFlex="70">
+            <mat-form-field class="full-width">
+              <mat-label>Entrez votre domaine d'expertise</mat-label>
+              <input matInput type="text" formControlName="expertiseField" [ngClass]="{ 'is-invalid': submitted && formControls.expertiseField.errors }">
+              <mat-error *ngIf="submitted && formControls.expertiseField.errors">
+                <mat-error *ngIf="formControls.expertiseField.errors.required">Ce champ est obligatoir</mat-error>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+    </form>
+</app-wizard-step>

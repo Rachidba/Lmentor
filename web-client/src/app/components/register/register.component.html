@@ -1,0 +1,48 @@
+<div>
+    <h1>Creer votre compte Mentor</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div fxLayout="row">
+        <div fxFlexOffset="10" fxFlex="70">
+          <mat-form-field class="full-width">
+            <mat-label>Entrez votre email</mat-label>
+            <input matInput type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
+            <mat-error *ngIf="submitted && formControls.email.errors">
+              <mat-error *ngIf="formControls.email.errors.required">L'email est obligatoir</mat-error>
+              <mat-error *ngIf="formControls.email.errors.email">L'email doit etre une adresse email valide</mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlexOffset="10" fxFlex="70">
+          <mat-form-field class="full-width">
+            <mat-label>Choisissez un mot de passe</mat-label>
+            <input matInput type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }">
+            <mat-error *ngIf="submitted && formControls.password.errors">
+                <mat-error *ngIf="formControls.password.errors.required">Le mot de passe est obligatoir</mat-error>
+                <mat-error *ngIf="formControls.password.errors.minlength">Le mot de passe doit contenir au moins 6 caractères</mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlexOffset="10" fxFlex="70">
+          <mat-form-field class="full-width">
+            <mat-label>Confirmer le mot de passe</mat-label>
+            <input matInput type="password" class="form-control" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && formControls.confirmPassword.errors }">
+            <mat-error *ngIf="submitted && formControls.confirmPassword.errors">
+              <mat-error *ngIf="formControls.confirmPassword.errors.required">Le mot de passe est obligatoir</mat-error>
+              <mat-error *ngIf="formControls.confirmPassword.errors.mustMatch">Les deux mots de passes ne sont pas equivalents</mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlexOffset="10" fxFlex="70" fxLayoutAlign="end">
+          <button color="accent" mat-raised-button type="submit">Creer un compte Mentor</button>
+        </div>
+      </div>
+    </form>
+</div>
