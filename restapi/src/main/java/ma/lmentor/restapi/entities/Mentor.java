@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import ma.lmentor.restapi.models.ExpertiseField;
 import ma.lmentor.restapi.models.GenderType;
 
 import javax.persistence.*;
@@ -18,10 +19,6 @@ import java.util.Set;
 public class Mentor extends Profile {
     @Enumerated(EnumType.STRING)
     private GenderType gender;
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
     @Column(unique = true)
     private String email;
     @Column(name = "phone_number")
@@ -31,7 +28,7 @@ public class Mentor extends Profile {
     private String city;
     private String job;
     @Column(name = "expertise_field")
-    private String expertiseField;
+    private ExpertiseField expertiseField;
     @Column(name = "session_price")
     private double sessionPrice;
     @Column(name = "is_profile_completed")
@@ -45,9 +42,7 @@ public class Mentor extends Profile {
     // TODO Remove this
     public Mentor(Integer profileId, User user, String firstName, String lastName, String email, String phoneNumber,
                              String title, String description, double sessionPrice) {
-        super(profileId, user);
-        this.firstName = firstName;
-        this.lastName = lastName;
+        super(profileId, firstName, lastName, user);
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.title = title;

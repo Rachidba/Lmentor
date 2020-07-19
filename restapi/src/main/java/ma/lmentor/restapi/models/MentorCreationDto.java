@@ -32,7 +32,7 @@ public class MentorCreationDto {
     @NotEmpty(message = "Please choose your job")
     private String job;
     @NotEmpty(message = "Please choose an expertise field")
-    private String expertiseField;
+    private ExpertiseField expertiseField;
     // Add birthday
     @Size(min = 1, message = "You should enter at least one education")
     private Set<EducationCreationDto> educations;

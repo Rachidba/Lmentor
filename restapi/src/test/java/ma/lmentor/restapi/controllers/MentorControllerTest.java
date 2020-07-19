@@ -1,10 +1,7 @@
 package ma.lmentor.restapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import ma.lmentor.restapi.models.EducationCreationDto;
-import ma.lmentor.restapi.models.ExperienceCreationDto;
-import ma.lmentor.restapi.models.GenderType;
-import ma.lmentor.restapi.models.MentorCreationDto;
+import ma.lmentor.restapi.models.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -52,7 +49,7 @@ public class MentorControllerTest extends AbstractTest {
         mentorCreationDto.setTitle("Software engineer");
         mentorCreationDto.setCity("Casablanca");
         mentorCreationDto.setJob("Employee");
-        mentorCreationDto.setExpertiseField("Information technology");
+        mentorCreationDto.setExpertiseField(ExpertiseField.SCIENCES);
         mentorCreationDto.setPhoneNumber("06125478");
         mentorCreationDto.setExperiences(experiences);
         mentorCreationDto.setEducations(educations);

@@ -2,10 +2,7 @@ package ma.lmentor.restapi.mappers;
 
 import ma.lmentor.restapi.entities.Mentor;
 import ma.lmentor.restapi.entities.User;
-import ma.lmentor.restapi.models.GenderType;
-import ma.lmentor.restapi.models.MentorCreationDto;
-import ma.lmentor.restapi.models.MentorDetailsDto;
-import ma.lmentor.restapi.models.MentorItemDto;
+import ma.lmentor.restapi.models.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +29,9 @@ public class MentorMapperTest {
         String job = "Employee";
         String expertiseField = "Software engineering";
         double sessionPrice = 0.0;
-        var mentorData = new MentorCreationDto(gender, firstName, lastName, email, phoneNumber, title, description, city, job, expertiseField, null, null);
+        var mentorData = new MentorCreationDto(gender, firstName, lastName, email, phoneNumber, title, description, city, job, ExpertiseField.SCIENCES, null, null);
         //var mentorData = new MentorCreationDto();
-        var expectedMentor = new Mentor(gender, firstName, lastName, email, phoneNumber, title, description, city, job, expertiseField, sessionPrice, false, null, null);
+        var expectedMentor = new Mentor(gender, email, phoneNumber, title, description, city, job, ExpertiseField.SCIENCES, sessionPrice, false, null, null);
         var mentor = mentorMapper.toMentor(mentorData);
         Assertions.assertEquals(expectedMentor, mentor);
     }
