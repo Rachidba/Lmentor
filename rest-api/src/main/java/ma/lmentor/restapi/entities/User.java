@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @Column(unique = true)
-    private String username; // the username is an email
+    private String email;
     private String password;
     private boolean enabled = true;
     @Enumerated(EnumType.STRING)
@@ -25,14 +25,14 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Profile profile;
 
-    public User(String username, String password, RoleType role) {
-        this.username = username;
+    public User(String email, String password, RoleType role) {
+        this.email = email;
         this.password = password;
         this.role = role;
     }
 
     public User(User user) {
-        this.username = user.username;
+        this.email = user.email;
         this.password = user.password;
         this.enabled = user.enabled;
         this.role = user.role;

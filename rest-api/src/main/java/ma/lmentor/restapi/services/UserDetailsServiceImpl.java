@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = this.userRepository.findByUsername(username)
+        var user = this.userRepository.findByEmail(username)
                 .map(BridgeUser::new)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
 
@@ -40,6 +40,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             var userAuthorities = new ArrayList<GrantedAuthority>();
             userAuthorities.add(new SimpleGrantedAuthority(super.getRole().name()));
             return userAuthorities;
+        }
+
+        @Override
+        public String getUsername() {
+            return super.getEmail();
         }
 
         @Override
