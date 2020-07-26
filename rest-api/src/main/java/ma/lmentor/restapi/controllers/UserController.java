@@ -1,6 +1,6 @@
 package ma.lmentor.restapi.controllers;
 
-import ma.lmentor.restapi.models.RegistrationDto;
+import ma.lmentor.restapi.vo.RegistrationDto;
 import ma.lmentor.restapi.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

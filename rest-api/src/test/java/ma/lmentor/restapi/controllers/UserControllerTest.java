@@ -1,6 +1,7 @@
 package ma.lmentor.restapi.controllers;
 
 import ma.lmentor.restapi.models.*;
+import ma.lmentor.restapi.vo.RegistrationDto;
 import org.junit.jupiter.api.*;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -23,7 +24,7 @@ public class UserControllerTest extends AbstractTest {
         */
 
         var registerDto = new RegistrationDto();
-        registerDto.setUsername("rachidba");
+        registerDto.setEmail("rachidba");
         registerDto.setPassword("password");
 
         var url = "/api/register";
@@ -46,7 +47,7 @@ public class UserControllerTest extends AbstractTest {
     @Test
     public void register_shouldReturn400_whenInvalidEmail() throws Exception {
         var registerDto = new RegistrationDto();
-        registerDto.setUsername("rachidba");
+        registerDto.setEmail("rachidba");
         registerDto.setPassword("password");
         registerDto.setRole(RoleType.ROLE_MENTOR);
 
@@ -69,7 +70,7 @@ public class UserControllerTest extends AbstractTest {
     @Test
     public void register_shouldReturn200_whenValidEmail() throws Exception {
         var registerDto = new RegistrationDto();
-        registerDto.setUsername("rachidba@gmail.com");
+        registerDto.setEmail("rachidba@gmail.com");
         registerDto.setPassword("password");
         registerDto.setRole(RoleType.ROLE_MENTOR);
 

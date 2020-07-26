@@ -1,4 +1,4 @@
-package ma.lmentor.restapi.models;
+package ma.lmentor.restapi.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class LoginDto {
-    private String username;
+public class LoginVo {
+    private String email;
     private String password;
 }

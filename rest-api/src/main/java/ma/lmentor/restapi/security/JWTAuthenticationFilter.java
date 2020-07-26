@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import ma.lmentor.restapi.entities.Mentor;
 import ma.lmentor.restapi.entities.User;
-import ma.lmentor.restapi.models.LoginDto;
+import ma.lmentor.restapi.vo.LoginVo;
 import ma.lmentor.restapi.models.LoginResponse;
 import ma.lmentor.restapi.models.MentorLoginResponse;
 import ma.lmentor.restapi.models.RoleType;
@@ -48,11 +48,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                HttpServletResponse response)  throws AuthenticationException {
         try {
             var credentials = new ObjectMapper()
-                    .readValue(request.getInputStream(), LoginDto.class);
+                    .readValue(request.getInputStream(), LoginVo.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            credentials.getUsername(),
+                            credentials.getEmail(),
                             credentials.getPassword(),
                             new ArrayList<>()
                     )
