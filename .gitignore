@@ -98,3 +98,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+#For environment variables
+**/.bash_profile
