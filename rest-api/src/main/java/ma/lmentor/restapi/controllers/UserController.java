@@ -1,6 +1,6 @@
 package ma.lmentor.restapi.controllers;
 
-import ma.lmentor.restapi.models.RegistrationDto;
+import ma.lmentor.restapi.vo.RegistrationVo;
 import ma.lmentor.restapi.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void register(@Valid @RequestBody RegistrationDto registrationDto) {
-        this.userService.create(registrationDto);
+    public void register(@Valid @RequestBody RegistrationVo registrationVo) {
+        this.userService.create(registrationVo);
     }
 }

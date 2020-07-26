@@ -3,7 +3,7 @@ package ma.lmentor.restapi.services;
 import ma.lmentor.restapi.entities.User;
 import ma.lmentor.restapi.exceptions.EmailAlreadyExistsException;
 import ma.lmentor.restapi.mappers.UserMapper;
-import ma.lmentor.restapi.models.RegistrationDto;
+import ma.lmentor.restapi.vo.RegistrationVo;
 import ma.lmentor.restapi.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,11 +27,11 @@ public class UserService {
     }
 
     @Transactional
-    public User create(RegistrationDto registrationDto) {
-        if (userRepository.existsByUsername(registrationDto.getUsername()))
+    public User create(RegistrationVo registrationVo) {
+        if (userRepository.existsByEmail(registrationVo.getEmail()))
             throw new EmailAlreadyExistsException("Email already used, try with an other email");
 
-        var user = userMapper.toUser(registrationDto);
+        var user = userMapper.toUser(registrationVo);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         var savedUser = userRepository.save(user);
         profileService.createEmptyProfile(savedUser);
@@ -39,7 +39,7 @@ public class UserService {
     }
 
     public Optional<User> get(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByEmail(username);
     }
 
     public Optional<User> getCurrentUser() {
