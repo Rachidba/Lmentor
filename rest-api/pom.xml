@@ -16,6 +16,7 @@
   <description>Lmentor REST API</description>  
   <properties> 
     <java.version>11</java.version>
+    <junit-jupiter.version>5.3.2</junit-jupiter.version>
   </properties>  
   <dependencies> 
     <dependency> 
@@ -36,18 +37,18 @@
       <groupId>mysql</groupId>  
       <artifactId>mysql-connector-java</artifactId>  
       <scope>runtime</scope> 
-    </dependency>  
-    <dependency> 
-      <groupId>org.springframework.boot</groupId>  
-      <artifactId>spring-boot-starter-test</artifactId>  
-      <scope>test</scope>  
-      <exclusions> 
-        <exclusion> 
-          <groupId>org.junit.vintage</groupId>  
-          <artifactId>junit-vintage-engine</artifactId> 
-        </exclusion> 
-      </exclusions> 
-    </dependency>  
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency> 
       <groupId>com.h2database</groupId>  
       <artifactId>h2</artifactId>  
@@ -94,12 +95,13 @@
       <artifactId>spring-boot-starter-web</artifactId>  
       <version>2.2.6.RELEASE</version>  
       <scope>compile</scope> 
-    </dependency>  
-    <dependency> 
-      <groupId>junit</groupId>  
-      <artifactId>junit</artifactId>  
-      <scope>test</scope> 
-    </dependency>  
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->  
     <dependency> 
       <groupId>com.fasterxml.jackson.core</groupId>  
