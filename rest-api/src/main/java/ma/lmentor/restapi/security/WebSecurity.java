@@ -1,7 +1,6 @@
 package ma.lmentor.restapi.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ma.lmentor.restapi.services.UserDetailsServiceImpl;
 import ma.lmentor.restapi.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -33,6 +32,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_URL).permitAll()
+                .antMatchers(SecurityConstants.CATEGORIES_URL).permitAll()
+                .antMatchers(SecurityConstants.SUBCATEGORIES_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), userService, objectMapper))
