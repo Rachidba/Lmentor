@@ -16,6 +16,8 @@ import javax.persistence.*;
 @EqualsAndHashCode
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(unique = true)
     private String email;
     private String password;
@@ -32,6 +34,7 @@ public class User {
     }
 
     public User(User user) {
+        this.id = user.id;
         this.email = user.email;
         this.password = user.password;
         this.enabled = user.enabled;

@@ -19,5 +19,4 @@ public class ProfileService {
             default: return null;
         }
     }
-
 }
