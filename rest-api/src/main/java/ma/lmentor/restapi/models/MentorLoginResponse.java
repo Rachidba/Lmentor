@@ -16,7 +16,6 @@ public class MentorLoginResponse extends LoginResponse {
                                String email,
                                RoleType role,
                                boolean isProfileCompleted) {
-        super(profileId, fullName, jwToken, email, role);
-        this.isProfileCompleted = isProfileCompleted;
+        super(profileId, fullName, jwToken, email, role, isProfileCompleted);
     }
 }

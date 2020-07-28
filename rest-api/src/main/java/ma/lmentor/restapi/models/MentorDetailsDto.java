@@ -1,31 +1,31 @@
 package ma.lmentor.restapi.models;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @EqualsAndHashCode
+@Builder
 public class MentorDetailsDto {
     private Integer profileId;
     private String fullName;
     private String title;
     private String description;
-    private String email;
+    private String contactEmail;
     private String phoneNumber;
     private double sessionPrice;
     private boolean isProfileCompleted;
     private Set<EducationDto> educations;
     private Set<ExperienceDto> experiences;
 
-    public MentorDetailsDto(Integer profileId, String fullName, String email, String phoneNumber,
+    public MentorDetailsDto(Integer profileId, String fullName, String contactEmail, String phoneNumber,
                             String title, String description, double sessionPrice) {
         this.profileId = profileId;
         this.fullName = fullName;
-        this.email = email;
+        this.contactEmail = contactEmail;
         this.phoneNumber = phoneNumber;
         this.title = title;
         this.description = description;
