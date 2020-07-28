@@ -1,6 +1,5 @@
 package ma.lmentor.restapi.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import ma.lmentor.restapi.models.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -45,7 +44,7 @@ public class MentorControllerTest extends AbstractTest {
         mentorCreationDto.setGender(GenderType.GENDER_MALE);
         //mentorCreationDto.setFirstName("Rachid");
         mentorCreationDto.setLastName("BAAZIZ");
-        mentorCreationDto.setEmail("rachidbaaziz.contact@gmail.com");
+        mentorCreationDto.setContactEmail("rachidbaaziz.contact@gmail.com");
         mentorCreationDto.setTitle("Software engineer");
         mentorCreationDto.setCity("Casablanca");
         mentorCreationDto.setJob("Employee");

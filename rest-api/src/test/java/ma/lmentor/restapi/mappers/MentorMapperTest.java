@@ -27,11 +27,19 @@ public class MentorMapperTest {
         String description = "A description";
         String city = "Casablanca";
         String job = "Employee";
-        String expertiseField = "Software engineering";
         double sessionPrice = 0.0;
         var mentorData = new MentorCreationDto(gender, firstName, lastName, email, phoneNumber, title, description, city, job, ExpertiseField.SCIENCES, null, null);
-        //var mentorData = new MentorCreationDto();
-        var expectedMentor = new Mentor(gender, email, phoneNumber, title, description, city, job, ExpertiseField.SCIENCES, sessionPrice, false, null, null);
+        var expectedMentor = Mentor.builder()
+                .gender(gender)
+                .contactEmail(email)
+                .phoneNumber(phoneNumber)
+                .title(title)
+                .description(description)
+                .city(city)
+                .job(job)
+                .expertiseField(ExpertiseField.SCIENCES)
+                .sessionPrice(sessionPrice)
+                .build();
         var mentor = mentorMapper.toMentor(mentorData);
         Assertions.assertEquals(expectedMentor, mentor);
     }
@@ -48,7 +56,7 @@ public class MentorMapperTest {
         String description = "A description";
         double sessionPrice = 100;
         var mentor = new Mentor(mentorId, user, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
-        var expectedMentorItem = new MentorItemDto(mentorId, firstName + lastName, title, sessionPrice);
+        var expectedMentorItem = new MentorItemDto(mentorId, firstName + ' ' + lastName, title, sessionPrice);
         var mentorItem = mentorMapper.toMentorItem(mentor);
         Assertions.assertEquals(expectedMentorItem, mentorItem);
     }
@@ -65,7 +73,7 @@ public class MentorMapperTest {
         String description = "A description";
         double sessionPrice = 100;
         var mentor = new Mentor(mentorId, user, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
-        var expectedMentorDetails = new MentorDetailsDto(mentorId, firstName + lastName, email, phoneNumber, title, description, sessionPrice);
+        var expectedMentorDetails = new MentorDetailsDto(mentorId, firstName + ' ' + lastName, email, phoneNumber, title, description, sessionPrice);
         var mentorItem = mentorMapper.toMentorDetails(mentor);
         Assertions.assertEquals(expectedMentorDetails, mentorItem);
     }

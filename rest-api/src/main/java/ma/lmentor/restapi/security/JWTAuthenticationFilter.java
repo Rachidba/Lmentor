@@ -98,7 +98,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             case ROLE_STUDENT:
                 loginResponse = new LoginResponse(currentUserProfile.getProfileId(),
                         currentUserProfile.getFirstName() + " " + currentUserProfile.getLastName(), jwToken,
-                        currentUser.get().getEmail(), RoleType.ROLE_STUDENT);
+                        currentUser.get().getEmail(), RoleType.ROLE_STUDENT, currentUserProfile.isProfileCompleted());
                 break;
             default:
                 loginResponse = new LoginResponse();
