@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/mentors")
+@RequestMapping("api/v1/mentors")
 public class MentorRestController {
     private final MentorService mentorService;
 

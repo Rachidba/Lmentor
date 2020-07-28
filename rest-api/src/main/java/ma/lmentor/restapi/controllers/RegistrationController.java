@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
-public class UserController {
+@RequestMapping("api/v1")
+public class RegistrationController {
 
     private final RegistrationService registrationService;
 
-    public UserController(RegistrationService registrationService) {
+    public RegistrationController(RegistrationService registrationService) {
         this.registrationService = registrationService;
     }
 

@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.HashMap;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class UserControllerTest extends AbstractTest {
+public class RegistrationControllerTest extends AbstractTest {
 
     @Override
     @BeforeAll
@@ -27,7 +27,7 @@ public class UserControllerTest extends AbstractTest {
         registerDto.setEmail("rachidba");
         registerDto.setPassword("password");
 
-        var url = "/api/register";
+        var url = "/api/v1/register";
         var inputJson = super.mapToJson(registerDto);
         var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -51,7 +51,7 @@ public class UserControllerTest extends AbstractTest {
         registerDto.setPassword("password");
         registerDto.setRole(RoleType.ROLE_MENTOR);
 
-        var url = "/api/register";
+        var url = "/api/v1/register";
         var inputJson = super.mapToJson(registerDto);
         var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -74,7 +74,7 @@ public class UserControllerTest extends AbstractTest {
         registerDto.setPassword("password");
         registerDto.setRole(RoleType.ROLE_MENTOR);
 
-        var url = "/api/register";
+        var url = "/api/v1/register";
         var inputJson = super.mapToJson(registerDto);
         var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)

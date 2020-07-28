@@ -7,10 +7,8 @@ import ma.lmentor.restapi.repositories.CategoryRepository;
 import ma.lmentor.restapi.repositories.SubcategoryRepository;
 import ma.lmentor.restapi.vo.SubcategoryVo;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.Set;
-
 @Service
 public class SubcategoryService {
     private SubcategoryRepository subcategoryRepository;
@@ -31,8 +29,8 @@ public class SubcategoryService {
                 .subcategoryName(subcategoryValues.getSubcategoryName()).build();
         return subcategoryRepository.save(subcategory);
     }
-
     public Set<Subcategory> getSubcategories(Set<Long> ids) {
         return new HashSet<>(subcategoryRepository.findAllById(ids));
     }
+
 }

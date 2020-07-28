@@ -1,5 +1,4 @@
 package ma.lmentor.restapi.entities;
-
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package ma.lmentor.restapi.services;
+package ma.lmentor.restapi.security;
 
 import ma.lmentor.restapi.entities.User;
 import ma.lmentor.restapi.repositories.UserRepository;
