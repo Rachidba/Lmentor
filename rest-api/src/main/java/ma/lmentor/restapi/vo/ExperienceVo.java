@@ -1,9 +1,6 @@
-package ma.lmentor.restapi.models;
+package ma.lmentor.restapi.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -11,7 +8,8 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class ExperienceCreationDto {
+@Builder
+public class ExperienceVo {
     @NotEmpty(message = "Please enter the company name")
     private String companyName;
     @NotEmpty(message = "Please enter your role in the company")

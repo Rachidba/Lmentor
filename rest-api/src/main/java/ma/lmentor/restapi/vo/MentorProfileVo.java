@@ -1,18 +1,15 @@
-package ma.lmentor.restapi.models;
+package ma.lmentor.restapi.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
+import ma.lmentor.restapi.models.GenderType;
 import javax.validation.constraints.*;
 import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode
-public class MentorCreationDto {
+@Builder
+public class MentorProfileVo {
     @NotNull(message = "Please choose your gender")
     private GenderType gender;
     @NotEmpty(message = "Please enter your first name")
@@ -29,12 +26,10 @@ public class MentorCreationDto {
     private String description;
     @NotEmpty(message = "Please choose your city")
     private String city;
-    @NotEmpty(message = "Please choose your job")
-    private String job;
     @NotNull(message = "Please choose an expertise field")
-    private ExpertiseField expertiseField;
-    // Add birthday
-    @Size(min = 1, message = "You should enter at least one education")
-    private Set<EducationCreationDto> educations;
-    private Set<ExperienceCreationDto> experiences;
+    private Set<Long> expertises;
+    @NotNull(message = "You should enter at least one education")
+    private EducationVo lastEducation;
+    @NotNull(message = "You should enter at least one experience")
+    private ExperienceVo lastExperience;
 }

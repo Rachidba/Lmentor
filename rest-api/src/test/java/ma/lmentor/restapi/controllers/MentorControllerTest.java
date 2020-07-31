@@ -1,6 +1,9 @@
 package ma.lmentor.restapi.controllers;
 
 import ma.lmentor.restapi.models.*;
+import ma.lmentor.restapi.vo.EducationVo;
+import ma.lmentor.restapi.vo.ExperienceVo;
+import ma.lmentor.restapi.vo.MentorProfileVo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,38 +23,33 @@ public class MentorControllerTest extends AbstractTest {
 
     @Test
     public void mentorCreation() throws Exception {
-        var experienceCreationDto = new ExperienceCreationDto();
-        experienceCreationDto.setCompanyName("Societe generale");
-        experienceCreationDto.setRole("R&D Software engineer");
-        experienceCreationDto.setDescription("It was cool");
-        experienceCreationDto.setStartYear(2019);
-        experienceCreationDto.setStartMonth(8);
+        var experienceVo = new ExperienceVo();
+        experienceVo.setCompanyName("Societe generale");
+        experienceVo.setRole("R&D Software engineer");
+        experienceVo.setDescription("It was cool");
+        experienceVo.setStartYear(2019);
+        experienceVo.setStartMonth(8);
 
-        var experiences = new HashSet<ExperienceCreationDto>();
-        experiences.add(experienceCreationDto);
+        var educationVo = new EducationVo();
+        educationVo.setSchool("FST Mohammedia");
+        educationVo.setDegree("Master degree");
+        educationVo.setStartYear(2016);
+        educationVo.setEndYear(2019);
+        educationVo.setFieldOfStudy("Software engineering");
 
-        var educationCreationDto = new EducationCreationDto();
-        educationCreationDto.setSchool("FST Mohammedia");
-        educationCreationDto.setDegree("Master degree");
-        educationCreationDto.setStartYear(2016);
-        educationCreationDto.setEndYear(2019);
-        educationCreationDto.setFieldOfStudy("Software engineering");
+        var educations = new HashSet<EducationVo>();
+        educations.add(educationVo);
 
-        var educations = new HashSet<EducationCreationDto>();
-        educations.add(educationCreationDto);
-
-        var mentorCreationDto = new MentorCreationDto();
+        var mentorCreationDto = new MentorProfileVo();
         mentorCreationDto.setGender(GenderType.GENDER_MALE);
-        //mentorCreationDto.setFirstName("Rachid");
+        mentorCreationDto.setFirstName("Rachid");
         mentorCreationDto.setLastName("BAAZIZ");
         mentorCreationDto.setContactEmail("rachidbaaziz.contact@gmail.com");
         mentorCreationDto.setTitle("Software engineer");
         mentorCreationDto.setCity("Casablanca");
-        mentorCreationDto.setJob("Employee");
-        mentorCreationDto.setExpertiseField(ExpertiseField.SCIENCES);
         mentorCreationDto.setPhoneNumber("06125478");
-        mentorCreationDto.setExperiences(experiences);
-        mentorCreationDto.setEducations(educations);
+        mentorCreationDto.setLastEducation(educationVo);
+        mentorCreationDto.setLastExperience(experienceVo);
 
         var url = "/api/v1/mentors";
         var inputJson = super.mapToJson(mentorCreationDto);
