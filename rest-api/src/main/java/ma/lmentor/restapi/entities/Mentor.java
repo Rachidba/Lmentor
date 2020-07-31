@@ -5,7 +5,6 @@ import lombok.experimental.SuperBuilder;
 import ma.lmentor.restapi.models.GenderType;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,9 +25,9 @@ public class Mentor extends Profile {
     @Column(name = "session_price")
     private double sessionPrice;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
-    private Set<Education> educations = new HashSet<>();
+    private Set<Education> educations;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
-    private Set<Experience> experiences = new HashSet<>();
+    private Set<Experience> experiences;
     // Add birthday
 
     // TODO Remove this
