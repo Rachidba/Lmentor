@@ -1,9 +1,6 @@
 package ma.lmentor.restapi.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @SuperBuilder
 @Table(name = "profiles")
+@EqualsAndHashCode
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Profile {
     @Id

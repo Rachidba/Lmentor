@@ -3,6 +3,7 @@ package ma.lmentor.restapi.mappers;
 import ma.lmentor.restapi.entities.Mentor;
 import ma.lmentor.restapi.entities.User;
 import ma.lmentor.restapi.models.*;
+import ma.lmentor.restapi.vo.MentorProfileVo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,18 @@ public class MentorMapperTest {
         String title = "Software engineer";
         String description = "A description";
         String city = "Casablanca";
-        String job = "Employee";
         double sessionPrice = 0.0;
-        var mentorData = new MentorCreationDto(gender, firstName, lastName, email, phoneNumber, title, description, city, job, ExpertiseField.SCIENCES, null, null);
+        var mentorData = MentorProfileVo.builder()
+                .gender(gender)
+                .firstName(firstName)
+                .lastName(lastName)
+                .contactEmail(email)
+                .phoneNumber(phoneNumber)
+                .title(title)
+                .description(description)
+                .city(city)
+                .build();
+
         var expectedMentor = Mentor.builder()
                 .gender(gender)
                 .contactEmail(email)
@@ -36,8 +46,6 @@ public class MentorMapperTest {
                 .title(title)
                 .description(description)
                 .city(city)
-                .job(job)
-                .expertiseField(ExpertiseField.SCIENCES)
                 .sessionPrice(sessionPrice)
                 .build();
         var mentor = mentorMapper.toMentor(mentorData);
@@ -55,8 +63,23 @@ public class MentorMapperTest {
         String title = "Software engineer";
         String description = "A description";
         double sessionPrice = 100;
-        var mentor = new Mentor(mentorId, user, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
-        var expectedMentorItem = new MentorItemDto(mentorId, firstName + ' ' + lastName, title, sessionPrice);
+        var mentor = Mentor.builder()
+                .profileId(mentorId)
+                .user(user)
+                .firstName(firstName)
+                .lastName(lastName)
+                .contactEmail(email)
+                .phoneNumber(phoneNumber)
+                .title(title)
+                .description(description)
+                .sessionPrice(sessionPrice)
+                .build();
+        var expectedMentorItem = MentorItemDto.builder()
+                .profileId(mentorId)
+                .fullName(firstName + ' ' + lastName)
+                .title(title)
+                .sessionPrice(sessionPrice)
+                .build();
         var mentorItem = mentorMapper.toMentorItem(mentor);
         Assertions.assertEquals(expectedMentorItem, mentorItem);
     }

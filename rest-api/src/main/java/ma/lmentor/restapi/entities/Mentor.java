@@ -2,7 +2,6 @@ package ma.lmentor.restapi.entities;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import ma.lmentor.restapi.models.ExpertiseField;
 import ma.lmentor.restapi.models.GenderType;
 
 import javax.persistence.*;
@@ -21,9 +20,8 @@ public class Mentor extends Profile {
     private String title;
     private String description;
     private String city;
-    private String job;
-    @Column(name = "expertise_field")
-    private ExpertiseField expertiseField;
+    @OneToMany(targetEntity = Subcategory.class)
+    private Set<Subcategory> expertiseAreas;
     @Column(name = "session_price")
     private double sessionPrice;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
