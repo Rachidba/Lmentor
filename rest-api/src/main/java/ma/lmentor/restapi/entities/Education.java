@@ -1,20 +1,21 @@
 package ma.lmentor.restapi.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "educations")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@EqualsAndHashCode
 public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String school;
     private String degree;
     @Column(name = "field_of_study")
@@ -26,6 +27,6 @@ public class Education {
     private String description;
     @ManyToOne
     @JoinColumn(name = "mentor_id", nullable = false)
+    @EqualsAndHashCode.Exclude
     private Mentor mentor;
-
 }

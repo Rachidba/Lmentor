@@ -1,7 +1,7 @@
 package ma.lmentor.restapi.controllers;
 
 import javassist.NotFoundException;
-import ma.lmentor.restapi.models.MentorCreationDto;
+import ma.lmentor.restapi.vo.MentorProfileVo;
 import ma.lmentor.restapi.models.MentorDetailsDto;
 import ma.lmentor.restapi.models.MentorItemDto;
 import ma.lmentor.restapi.services.MentorService;
@@ -31,16 +31,16 @@ public class MentorRestController {
 
     @GetMapping("/{mentorId}")
     public ResponseEntity<MentorDetailsDto> getMentor(@PathVariable Integer mentorId) {
-        var mentor = mentorService.GetMentor(mentorId);
+        var mentor = mentorService.getMentor(mentorId);
         if (mentor.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         return ResponseEntity.status(HttpStatus.FOUND).body(mentor.get());
     }
 
     @PostMapping
-    public ResponseEntity<MentorDetailsDto> createMentor(@Valid @RequestBody MentorCreationDto mentorData) {
+    public ResponseEntity<MentorDetailsDto> createMentor(@Valid @RequestBody MentorProfileVo mentorData) {
         Optional<MentorDetailsDto> saveResult = null;
         try {
-            saveResult = this.mentorService.Create(mentorData);
+            saveResult = this.mentorService.create(mentorData);
             if (saveResult.isEmpty()) return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
             return ResponseEntity.status(HttpStatus.CREATED).body(saveResult.get());
         } catch (NotFoundException e) {

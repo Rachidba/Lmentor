@@ -1,9 +1,6 @@
-package ma.lmentor.restapi.models;
+package ma.lmentor.restapi.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -11,7 +8,8 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class EducationCreationDto {
+@Builder
+public class EducationVo {
     @NotEmpty(message = "Please enter your school name")
     private String school;
     @NotEmpty(message = "Please enter the degree")
@@ -19,7 +17,6 @@ public class EducationCreationDto {
     @NotEmpty(message = "Please enter the field of study")
     private String fieldOfStudy;
     private int startYear;
-    @NotEmpty(message = "Please enter the end year")
     private int endYear;
     private String description;
 }
