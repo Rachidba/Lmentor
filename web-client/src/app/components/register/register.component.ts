@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 import { MustMatch } from 'src/app/helpers/mustMatchValidator';
-import { RegisterDto } from 'src/app/models/RegisterDto';
+import { RegisterDto } from 'src/app/models/vo/RegisterVo';
 import { RoleType } from 'src/app/models/RoleType';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';

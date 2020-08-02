@@ -1,8 +1,10 @@
+import { GenderType } from './GenderType';
+
 export interface MentorCreationPersonal {
-    gender: string;
+    gender: GenderType;
     firstName: string;
     lastName: string;
-    email: string;
+    contactEmail: string;
     phoneNumber: string;
     city: string;
 }
