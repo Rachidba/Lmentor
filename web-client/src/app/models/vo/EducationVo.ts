@@ -1,4 +1,4 @@
-export class EducationDto {
+export class EducationVo {
     constructor(
         public school: string,
         public degree: string,
