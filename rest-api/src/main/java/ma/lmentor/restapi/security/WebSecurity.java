@@ -34,6 +34,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_URL).permitAll()
                 .antMatchers(SecurityConstants.CATEGORIES_URL).permitAll()
                 .antMatchers(SecurityConstants.SUBCATEGORIES_URL).permitAll()
+                .antMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), userService, objectMapper))
