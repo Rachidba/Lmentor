@@ -25,7 +25,7 @@ public class RegistrationService {
     }
 
     @Transactional
-    public User register(RegistrationVo registrationVo) {
+    public User register(RegistrationVo registrationVo) throws EmailAlreadyExistsException {
         if (userRepository.existsByEmail(registrationVo.getEmail()))
             throw new EmailAlreadyExistsException("Email already used, try with an other email");
 

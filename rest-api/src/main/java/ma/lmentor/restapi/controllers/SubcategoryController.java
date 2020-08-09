@@ -1,5 +1,9 @@
 package ma.lmentor.restapi.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import javassist.NotFoundException;
 import ma.lmentor.restapi.entities.Subcategory;
 import ma.lmentor.restapi.exceptions.SubcategoryNameAlreadyExistsException;
@@ -14,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+import static javax.servlet.http.HttpServletResponse.*;
+
 @RestController
 @RequestMapping("api/v1/subcategories")
+@Api(tags = "Subcategory API")
 public class SubcategoryController {
     private SubcategoryService subcategoryService;
 
@@ -24,6 +31,12 @@ public class SubcategoryController {
     }
 
     @PostMapping
+    @ApiOperation(value = "Register new user")
+    @ApiResponses(value = {
+            @ApiResponse(code = SC_CREATED, message = "Subcategory created"),
+            @ApiResponse(code = SC_CONFLICT, message = "Subcategory already exist"),
+            @ApiResponse(code = SC_NOT_FOUND, message = "Mother category not found")
+    })
     public ResponseEntity<Subcategory> createSubcategory(@Valid @RequestBody SubcategoryVo subcategoryVo) {
         try {
             var savedSubcategory = subcategoryService.createSubcategory(subcategoryVo);
