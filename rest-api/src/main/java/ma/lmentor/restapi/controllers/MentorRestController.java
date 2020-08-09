@@ -1,5 +1,9 @@
 package ma.lmentor.restapi.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import javassist.NotFoundException;
 import ma.lmentor.restapi.vo.MentorProfileVo;
 import ma.lmentor.restapi.models.MentorDetailsDto;
@@ -13,8 +17,11 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+import static javax.servlet.http.HttpServletResponse.*;
+
 @RestController
 @RequestMapping("api/v1/mentors")
+@Api(tags = "Mentor profile API")
 public class MentorRestController {
     private final MentorService mentorService;
 
@@ -23,13 +30,23 @@ public class MentorRestController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Get all mentors")
+    @ApiResponses(value = {
+            @ApiResponse(code = SC_OK, message = "List of mentors returned"),
+            @ApiResponse(code = SC_NO_CONTENT, message = "Mentors list is empty")
+    })
     public ResponseEntity<List<MentorItemDto>> getAllMentors() {
         var mentors = mentorService.GetAllMentors();
-        var httpStatus = mentors.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.ACCEPTED;
+        var httpStatus = mentors.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return ResponseEntity.status(httpStatus).body(mentors);
     }
 
     @GetMapping("/{mentorId}")
+    @ApiOperation(value = "Get mentor profile by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = SC_FOUND, message = "Mentor returned"),
+            @ApiResponse(code = SC_NOT_FOUND, message = "Mentor not found")
+    })
     public ResponseEntity<MentorDetailsDto> getMentor(@PathVariable Integer mentorId) {
         var mentor = mentorService.getMentor(mentorId);
         if (mentor.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -37,6 +54,11 @@ public class MentorRestController {
     }
 
     @PostMapping
+    @ApiOperation(value = "Update mentor profile")
+    @ApiResponses(value = {
+            @ApiResponse(code = SC_OK, message = "Profile updated"),
+            @ApiResponse(code = SC_UNAUTHORIZED, message = "User not authorised to do this operation")
+    })
     public ResponseEntity<MentorDetailsDto> createMentor(@Valid @RequestBody MentorProfileVo mentorData) {
         Optional<MentorDetailsDto> saveResult = null;
         try {
