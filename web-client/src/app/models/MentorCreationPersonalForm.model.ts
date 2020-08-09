@@ -1,11 +1,12 @@
 import { MentorCreationPersonal } from './MentorCreationPersonal.interface';
+import { GenderType } from './GenderType';
 
 export class MentorCreationPersonalForm {
     data = {
-        gender: '',
+        gender: GenderType.GENDER_OTHER,
         firstName: '',
         lastName: '',
-        email: '',
+        contactEmail: '',
         phoneNumber: '',
         city: ''
     } as MentorCreationPersonal;

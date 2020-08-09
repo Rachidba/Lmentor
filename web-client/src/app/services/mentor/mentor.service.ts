@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MentorCreationDto } from 'src/app/models/MentorCreationDto';
+import { MentorProfileVo } from 'src/app/models/vo/MentorProfileVo';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class MentorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public completeCreation(mentorCreationDto: MentorCreationDto): Observable<any> {
+  public completeCreation(mentorCreationDto: MentorProfileVo): Observable<any> {
     return this.httpClient.post(this.backendUrl, mentorCreationDto);
   }
 }
