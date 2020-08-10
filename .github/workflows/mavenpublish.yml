@@ -32,7 +32,7 @@ jobs:
         with:
           java-version: 14
       - name: Generate the package
-        run: mvn -B package --file pom.xml -Dmaven.test.skip=true
+        run: mvn -B package --file ./rest-api/pom.xml -Dmaven.test.skip=true
       - name: Deploy the package to the remote server
         uses: garygrossgarten/github-action-scp@release
         with:
