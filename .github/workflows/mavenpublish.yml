@@ -4,7 +4,18 @@
 name: Maven Package
 
 
-on: push
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+    - "web-client/**"
+    - ".gitignore"
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+    - "web-client/**"
+    - ".gitignore"
+    
 jobs:
   build:
 
@@ -36,7 +47,7 @@ jobs:
       - name: Deploy the package to the remote server
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: target/restapi-0.0.1-SNAPSHOT.jar
+          local: /home/runner/work/Lmentor/Lmentor/./rest-api/target/restapi-0.0.1-SNAPSHOT.jar
           remote: /var/lmentor/restapi-0.0.1-SNAPSHOT.jar
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
