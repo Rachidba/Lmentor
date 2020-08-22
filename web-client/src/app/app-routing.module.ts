@@ -7,12 +7,14 @@ import { MentorCreationFormComponent } from './components/mentor-creation-form/m
 import { MentorCreationPersonalComponent } from './components/mentor-creation/mentor-creation-personal/mentor-creation-personal.component';
 import { MentorCreationExpertiseComponent } from './components/mentor-creation/mentor-creation-expertise/mentor-creation-expertise.component';
 import { MentorCreationProfileComponent } from './components/mentor-creation/mentor-creation-profile/mentor-creation-profile.component';
+import { SearchComponent } from './components/mentors/search/search.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'search', component: SearchComponent },
   { path: 'MentorCreationPersonal', component: MentorCreationPersonalComponent },
   { path: 'MentorCreationExpertise', component: MentorCreationExpertiseComponent },
   { path: 'MentorCreationProfile', component: MentorCreationProfileComponent },
