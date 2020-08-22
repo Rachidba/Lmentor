@@ -8,6 +8,7 @@ import { MentorCreationPersonalComponent } from './components/mentor-creation/me
 import { MentorCreationExpertiseComponent } from './components/mentor-creation/mentor-creation-expertise/mentor-creation-expertise.component';
 import { MentorCreationProfileComponent } from './components/mentor-creation/mentor-creation-profile/mentor-creation-profile.component';
 import { SearchComponent } from './components/mentors/search/search.component';
+import { AuthGard } from './services/auth.guard';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'MentorCreationPersonal', component: MentorCreationPersonalComponent },
+  { path: 'MentorCreationPersonal', component: MentorCreationPersonalComponent, canActivate: [AuthGard] },
   { path: 'MentorCreationExpertise', component: MentorCreationExpertiseComponent },
   { path: 'MentorCreationProfile', component: MentorCreationProfileComponent },
   { path: 'home', redirectTo : '/' }
@@ -23,6 +24,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGard]
 })
 export class AppRoutingModule { }

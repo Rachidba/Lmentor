@@ -1,22 +1,24 @@
 <mat-toolbar color="primary" style="font-size: 1em;">
-    <div fxHide.gt-xs>
-      <button mat-icon-button (click)="onToggleSidenav()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-    <div><a routerLink="/" style="font-size: large; margin-left: 10px; margin-right: 10px; font-weight: bold;">L'Mentor</a></div>
-    <div fxFlex fxLayout fxHide.xs>
-      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-        <li><a routerLink="/register">Comment ca marche</a></li>
-        <li><a routerLink="/login">Devenir mentor</a></li>
-      </ul>
-    </div>
-    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-        <li><a routerLink="/register">S'inscrir</a></li>
-        <li><a routerLink="/login">S'authentifier</a></li>
-        <li><a>Chercher un mentor</a></li>
-        <li><a>Se deconnecter</a></li>
-      </ul>
-    </div>
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+    <a routerLink="/" style="font-size: large; margin-left: 10px; margin-right: 10px; font-weight: bold;">L'Mentor</a>
+  </div>
+  <div fxFlex fxLayout fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li><a routerLink="/register">Comment ca marche</a></li>
+      <li><a routerLink="/login">Devenir mentor</a></li>
+    </ul>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li *ngIf="!isAuth"><a routerLink="/register">S'inscrir</a></li>
+      <li *ngIf="!isAuth"><a routerLink="/login">S'authentifier</a></li>
+      <li><a routerLink="/search">Chercher un mentor</a></li>
+      <li *ngIf="isAuth"><a (click)="logout()">Se deconnecter</a></li>
+    </ul>
+  </div>
 </mat-toolbar>
