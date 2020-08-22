@@ -1,9 +1,9 @@
 <mat-nav-list>
-    <a mat-list-item routerLink="/register" (click)="onCloseSidenav()">
+    <a *ngIf="!isAuth" mat-list-item routerLink="/register" (click)="onCloseSidenav()">
       <mat-icon>face</mat-icon>
       <span class="nav-caption">S'inscrir</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="onCloseSidenav()">
+    <a *ngIf="!isAuth" mat-list-item routerLink="/login" (click)="onCloseSidenav()">
       <mat-icon>face</mat-icon>
       <span class="nav-caption">S'authentifier</span>
     </a>
@@ -11,7 +11,7 @@
       <mat-icon>face</mat-icon>
       <span class="nav-caption">Comment ca marche</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="onCloseSidenav()">
+    <a mat-list-item routerLink="/search" (click)="onCloseSidenav()">
       <mat-icon>face</mat-icon>
       <span class="nav-caption">Chercher un mentor</span>
     </a>
@@ -19,8 +19,8 @@
       <mat-icon>face</mat-icon>
       <span class="nav-caption">Devenir mentor</span>
     </a>
-    <mat-list-item>
-      <button mat-icon-button (click)="onCloseSidenav()">
+    <mat-list-item  *ngIf="isAuth">
+      <button mat-icon-button  (click)="logout()">
         <mat-icon>eject</mat-icon>
         <span class="nav-caption">Se deconnecter</span>
       </button>

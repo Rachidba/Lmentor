@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 import { MustMatch } from 'src/app/helpers/mustMatchValidator';
-import { RegisterDto } from 'src/app/models/vo/RegisterVo';
 import { RoleType } from 'src/app/models/RoleType';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -32,20 +31,19 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     if (this.registerForm.invalid) {
       return;
     }
-
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-    var registerDto = new RegisterDto(this.registerForm.controls.email.value, this.registerForm.controls.password.value, RoleType.ROLE_MENTOR);
-    this.authenticationService.register(registerDto).subscribe(res => {
+    this.authenticationService.register({
+      email: this.registerForm.controls.email.value,
+      password: this.registerForm.controls.password.value,
+      role: RoleType.ROLE_MENTOR
+    }).subscribe(res => {
       console.log('Succes with httpSatatus: ', res)
     }, 
     (err: HttpErrorResponse) => {
       console.log('Error: ', err)
-    }
-    );
+    });
   }
 
 }
