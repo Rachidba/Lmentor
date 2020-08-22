@@ -1,10 +1,10 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" style="font-size: 1em;">
     <div fxHide.gt-xs>
       <button mat-icon-button (click)="onToggleSidenav()">
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <div>L'Mentor</div>
+    <div><a routerLink="/" style="font-size: large; margin-left: 10px; margin-right: 10px; font-weight: bold;">L'Mentor</a></div>
     <div fxFlex fxLayout fxHide.xs>
       <ul fxLayout fxLayoutGap="10px" class="navigation-items">
         <li><a routerLink="/register">Comment ca marche</a></li>
