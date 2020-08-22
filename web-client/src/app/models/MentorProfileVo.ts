@@ -1,6 +1,6 @@
-import { ExperienceVo } from './ExperienceVo';
-import { EducationVo } from './EducationVo';
-import { GenderType } from './../GenderType';
+import { Experience } from './Experience.model';
+import { Eduction } from './Education.model';
+import { GenderType } from './GenderType';
 
 export class MentorProfileVo {
     constructor(
@@ -13,7 +13,7 @@ export class MentorProfileVo {
         public descrition: string,
         public city: string,
         public expertises: Set<Number>,
-        public lastEducation: EducationVo,
-        public lastExperience: ExperienceVo
+        public lastEducation: Eduction,
+        public lastExperience: Experience
     ) {}
 }
