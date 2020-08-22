@@ -38,12 +38,14 @@ export class RegisterComponent implements OnInit {
       email: this.registerForm.controls.email.value,
       password: this.registerForm.controls.password.value,
       role: RoleType.ROLE_MENTOR
-    }).subscribe(res => {
-      console.log('Succes with httpSatatus: ', res)
-    }, 
-    (err: HttpErrorResponse) => {
-      console.log('Error: ', err)
-    });
+    }).subscribe(
+      res => {
+        console.log('Res: ', res)
+      }, 
+      err => {
+        console.log('Error: ', err)
+      }
+    );
   }
 
 }
