@@ -23,6 +23,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialModule } from './material.module';
+import { HeaderComponent } from './components/navigation/header/header.component';
+import { SidenavListComponent } from './components/navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,9 @@ import { MaterialModule } from './material.module';
     MentorCreationPersonalComponent,
     MentorCreationExpertiseComponent,
     MentorCreationProfileComponent,
+    HeaderComponent,
+    SidenavListComponent,
+    
   ],
   imports: [
     MaterialModule,
