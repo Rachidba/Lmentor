@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MentorProfileVo } from 'src/app/models/vo/MentorProfileVo';
+import { MentorProfileVo } from 'src/app/models/MentorProfileVo';
 import { Observable } from 'rxjs';
 
 @Injectable({

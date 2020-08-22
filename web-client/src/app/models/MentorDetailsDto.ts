@@ -1,5 +1,5 @@
-import { EducationVo } from './vo/EducationVo';
-import { ExperienceVo } from './vo/ExperienceVo';
+import { Eduction } from './Education.model';
+import { Experience } from './Experience.model';
 
 export class MentorDetailsDto {
     constructor(
@@ -10,7 +10,7 @@ export class MentorDetailsDto {
         public title: string,
         public descrition: string,
         public sessionPrice: number,
-        public educations: Set<EducationVo>,
-        public experiences: Set<ExperienceVo>
+        public educations: Set<Eduction>,
+        public experiences: Set<Experience>
     ) {}
 }
