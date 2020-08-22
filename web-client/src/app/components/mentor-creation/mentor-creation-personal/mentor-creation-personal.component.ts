@@ -7,6 +7,7 @@ import { MentorCreationPersonal } from 'src/app/models/MentorCreationPersonal.in
 import { map, take, distinctUntilChanged } from 'rxjs/operators';
 import { merge } from 'rxjs';
 import * as MentorCreationPersonalActions from './mentor-creation-personal.actions';
+import { GenderType } from 'src/app/models/GenderType';
 
 @Component({
   selector: 'app-mentor-creation-personal',
@@ -48,7 +49,7 @@ export class MentorCreationPersonalComponent implements OnInit {
               .subscribe((mentorCreationPersonal: MentorCreationPersonal) => this.personalForm.patchValue(mentorCreationPersonal, { emitEvent: false }));
 
     const gender$ = this.genderCtrl.valueChanges.pipe(
-      map((gender: string) => ({ gender } as Partial<MentorCreationPersonal>))
+      map((gender: GenderType) => ({ gender } as Partial<MentorCreationPersonal>))
     );
     const firstName$ = this.firstNameCtrl.valueChanges.pipe(
       map((firstName: string) => ({ firstName } as Partial<MentorCreationPersonal>))
