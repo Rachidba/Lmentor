@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -14,20 +13,18 @@ import { ExperienceFormComponent } from './components/experience-form/experience
 import { MentorCreationFormComponent } from './components/mentor-creation-form/mentor-creation-form.component';
 import { MentorService } from './services/mentor/mentor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MentorCreationHeaderComponent } from './components/mentor-creation/mentor-creation-header/mentor-creation-header.component';
 import { WizardStepComponent } from './components/mentor-creation/wizard-step/wizard-step.component';
 import { MentorCreationPersonalComponent } from './components/mentor-creation/mentor-creation-personal/mentor-creation-personal.component';
 import { MentorCreationExpertiseComponent } from './components/mentor-creation/mentor-creation-expertise/mentor-creation-expertise.component';
-import { MatRadioModule } from '@angular/material/radio';
 import { MentorCreationProfileComponent } from './components/mentor-creation/mentor-creation-profile/mentor-creation-profile.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MaterialModule } from './material.module';
+import { HeaderComponent } from './components/navigation/header/header.component';
+import { SidenavListComponent } from './components/navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -43,19 +40,18 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MentorCreationPersonalComponent,
     MentorCreationExpertiseComponent,
     MentorCreationProfileComponent,
+    HeaderComponent,
+    SidenavListComponent,
+    
   ],
   imports: [
+    MaterialModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
     FlexLayoutModule,
-    MatRadioModule,
-    MatSelectModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 25

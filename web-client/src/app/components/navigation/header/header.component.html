@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+      <button mat-icon-button (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div>L'Mentor</div>
+    <div fxFlex fxLayout fxHide.xs>
+      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+        <li><a routerLink="/register">Comment ca marche</a></li>
+        <li><a routerLink="/login">Devenir mentor</a></li>
+      </ul>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+        <li><a routerLink="/register">S'inscrir</a></li>
+        <li><a routerLink="/login">S'authentifier</a></li>
+        <li><a>Chercher un mentor</a></li>
+        <li><a>Se deconnecter</a></li>
+      </ul>
+    </div>
+</mat-toolbar>
