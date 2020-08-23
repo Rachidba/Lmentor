@@ -10,17 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 import { EducationFormComponent } from './components/education-form/education-form.component';
 import { ExperienceFormComponent } from './components/experience-form/experience-form.component';
-import { MentorCreationFormComponent } from './components/mentor-creation-form/mentor-creation-form.component';
 import { MentorService } from './services/mentor/mentor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MentorCreationHeaderComponent } from './components/mentor-creation/mentor-creation-header/mentor-creation-header.component';
-import { WizardStepComponent } from './components/mentor-creation/wizard-step/wizard-step.component';
-import { MentorCreationPersonalComponent } from './components/mentor-creation/mentor-creation-personal/mentor-creation-personal.component';
-import { MentorCreationExpertiseComponent } from './components/mentor-creation/mentor-creation-expertise/mentor-creation-expertise.component';
-import { MentorCreationProfileComponent } from './components/mentor-creation/mentor-creation-profile/mentor-creation-profile.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaterialModule } from './material.module';
 import { HeaderComponent } from './components/navigation/header/header.component';
@@ -38,12 +30,6 @@ import { MentorProfileCreationComponent } from './components/profile-creation/me
     LoginComponent,
     EducationFormComponent,
     ExperienceFormComponent,
-    MentorCreationFormComponent,
-    MentorCreationHeaderComponent,
-    WizardStepComponent,
-    MentorCreationPersonalComponent,
-    MentorCreationExpertiseComponent,
-    MentorCreationProfileComponent,
     HeaderComponent,
     SidenavListComponent,
     SearchComponent,
@@ -62,7 +48,6 @@ import { MentorProfileCreationComponent } from './components/profile-creation/me
     HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
