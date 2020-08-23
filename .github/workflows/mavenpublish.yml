@@ -57,7 +57,9 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            cd /var/lmentor && kill -9 $(pgrep -f restapi-0.0.1-SNAPSHOT.jar) && source .bash_profile && java -jar restapi-0.0.1-SNAPSHOT.jar &
+            cd /var/lmentor
+            kill -9 $(pgrep -f restapi-0.0.1-SNAPSHOT.jar)
+            source .bash_profile && java -jar restapi-0.0.1-SNAPSHOT.jar &
           host: ${{ secrets.HOST }}
           user: ${{ secrets.SSH_USER }}
           pass: ${{ secrets.SSH_PASSWORD }}
