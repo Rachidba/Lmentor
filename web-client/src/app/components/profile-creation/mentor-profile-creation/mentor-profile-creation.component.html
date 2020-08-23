@@ -224,11 +224,9 @@
             <ng-template matStepLabel>Domaine d'expertise</ng-template>
             <div fxLayout="column" fxLayoutGap="5px">
                 <mat-form-field appearance="outline" fxFlex="100">
-                    <mat-label>Annee de debut</mat-label>
+                    <mat-label>Category</mat-label>
                     <mat-select>
-                    <mat-option value="option">Option</mat-option>
-                    <mat-option value="option">Option</mat-option>
-                    <mat-option value="option">Option</mat-option>
+                        <mat-option *ngFor="let category of categories" value="category.id">{{ category.categoryName }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline">

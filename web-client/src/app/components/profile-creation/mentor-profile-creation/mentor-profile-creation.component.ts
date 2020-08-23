@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Category } from 'src/app/models/Category.model';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-mentor-profile-creation',
@@ -7,6 +9,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./mentor-profile-creation.component.css']
 })
 export class MentorProfileCreationComponent implements OnInit {
+  categories: Category[];
+  
   isLinear = false;
   personalInfosFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -17,7 +21,7 @@ export class MentorProfileCreationComponent implements OnInit {
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     // this.firstFormGroup = this._formBuilder.group({
@@ -26,6 +30,17 @@ export class MentorProfileCreationComponent implements OnInit {
     // this.secondFormGroup = this._formBuilder.group({
     //   secondCtrl: ['', Validators.required]
     // });
+  }
+  getCategories() {
+    this.categoryService.getCategories()
+    .subscribe(
+      res => {
+        this.categories = res;
+      }, 
+      err => {
+        console.log('Error: ', err)
+      }
+    );
   }
 
 }
