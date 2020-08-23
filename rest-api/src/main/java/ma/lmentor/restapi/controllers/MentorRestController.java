@@ -36,7 +36,7 @@ public class MentorRestController {
             @ApiResponse(code = SC_NO_CONTENT, message = "Mentors list is empty")
     })
     public ResponseEntity<List<MentorItemDto>> getAllMentors() {
-        var mentors = mentorService.GetAllMentors();
+        var mentors = mentorService.getCompletedMentorProfiles();
         var httpStatus = mentors.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return ResponseEntity.status(httpStatus).body(mentors);
     }

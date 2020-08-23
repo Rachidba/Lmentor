@@ -32,8 +32,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_URL).permitAll()
-                .antMatchers(SecurityConstants.CATEGORIES_URL).permitAll()
-                .antMatchers(SecurityConstants.SUBCATEGORIES_URL).permitAll()
+                .antMatchers(HttpMethod.GET, SecurityConstants.CATEGORIES_URL).permitAll()
+                .antMatchers(HttpMethod.GET, SecurityConstants.SUBCATEGORIES_URL).permitAll()
+                .antMatchers(HttpMethod.POST, SecurityConstants.CATEGORIES_URL).access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.POST, SecurityConstants.SUBCATEGORIES_URL).access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.GET, SecurityConstants.MENTORS_URL).permitAll()
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources/**",

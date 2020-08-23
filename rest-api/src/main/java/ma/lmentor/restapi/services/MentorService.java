@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MentorService {
@@ -56,8 +57,11 @@ public class MentorService {
         return mentorRepository.save(new Mentor(user));
     }
 
-    public List<MentorItemDto> GetAllMentors() {
-        var mentors = mentorRepository.findAll();
+    public List<MentorItemDto> getCompletedMentorProfiles() {
+        var mentors = mentorRepository.findAll()
+                .stream()
+                .filter(mentor -> mentor.isProfileCompleted())
+                .collect(Collectors.toList());
         return mentorMapper.toMentorItems(mentors);
     }
 
