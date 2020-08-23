@@ -10,7 +10,7 @@
                 <input matInput placeholder="Ex: java, photoshop, Marketing digital...">
             </mat-form-field>
             <mat-form-field fxFlex="40" appearance="outline">
-                <mat-label>Choisissez une categorie</mat-label>
+                <mat-label>Categorie</mat-label>
                 <mat-select>
                     <mat-option *ngFor="let category of categories" value="category">{{ category }}</mat-option>
                 </mat-select>
@@ -21,4 +21,4 @@
         </mat-card-actions>
     </mat-card>
 </section>
-<app-mentor-items></app-mentor-items>
+<app-mentor-items [mentors]='mentors'></app-mentor-items>

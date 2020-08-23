@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { RegisterDTO } from '../models/RegisterDTO.model';
 import { LoginDTO } from '../models/LoginDTO.model';
 import { SessionService } from './session.service';
-import { map, catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

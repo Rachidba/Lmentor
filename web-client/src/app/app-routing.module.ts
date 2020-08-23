@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'mentorprofilecreation', component: MentorProfileCreationComponent, canActivate: [AuthGard] },
+  // { path: 'mentorprofilecreation', component: MentorProfileCreationComponent, canActivate: [AuthGard] },
+  { path: 'mentorprofilecreation', component: MentorProfileCreationComponent },
   { path: 'home', redirectTo : '/' }
 ];
 

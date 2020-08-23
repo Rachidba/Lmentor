@@ -4,7 +4,6 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/mustMatchValidator';
 import { RoleType } from 'src/app/models/RoleType';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -47,5 +46,4 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-
 }
