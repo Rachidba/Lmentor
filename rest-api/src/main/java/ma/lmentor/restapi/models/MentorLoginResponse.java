@@ -13,9 +13,10 @@ public class MentorLoginResponse extends LoginResponse {
     public MentorLoginResponse(Integer profileId,
                                String fullName,
                                String jwToken,
+                               long tokenExpiryDateMillis,
                                String email,
                                RoleType role,
                                boolean isProfileCompleted) {
-        super(profileId, fullName, jwToken, email, role, isProfileCompleted);
+        super(profileId, fullName, jwToken, tokenExpiryDateMillis,  email, role, isProfileCompleted);
     }
 }

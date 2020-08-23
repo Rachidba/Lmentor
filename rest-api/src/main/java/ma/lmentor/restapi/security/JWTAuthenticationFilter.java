@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import ma.lmentor.restapi.entities.Mentor;
 import ma.lmentor.restapi.entities.User;
 import ma.lmentor.restapi.vo.LoginVo;
 import ma.lmentor.restapi.models.LoginResponse;
@@ -91,14 +90,24 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         var currentUserProfile = currentUser.get().getProfile();
         switch (currentUser.get().getRole()) {
             case ROLE_MENTOR:
-                loginResponse = new MentorLoginResponse(currentUserProfile.getProfileId(),
-                        currentUserProfile.getFirstName() + " " + currentUserProfile.getLastName(), jwToken,
-                        currentUser.get().getEmail(), RoleType.ROLE_MENTOR, ((Mentor) currentUserProfile).isProfileCompleted());
+                loginResponse = new MentorLoginResponse(
+                        currentUserProfile.getProfileId(),
+                        currentUserProfile.getFirstName() + " " + currentUserProfile.getLastName(),
+                        jwToken,
+                        gerTokenExpiryDateMillis(),
+                        currentUser.get().getEmail(),
+                        RoleType.ROLE_MENTOR,
+                        (currentUserProfile).isProfileCompleted());
                 break;
             case ROLE_STUDENT:
-                loginResponse = new LoginResponse(currentUserProfile.getProfileId(),
-                        currentUserProfile.getFirstName() + " " + currentUserProfile.getLastName(), jwToken,
-                        currentUser.get().getEmail(), RoleType.ROLE_STUDENT, currentUserProfile.isProfileCompleted());
+                loginResponse = new LoginResponse(
+                        currentUserProfile.getProfileId(),
+                        currentUserProfile.getFirstName() + " " + currentUserProfile.getLastName(),
+                        jwToken,
+                        gerTokenExpiryDateMillis(),
+                        currentUser.get().getEmail(),
+                        RoleType.ROLE_STUDENT,
+                        currentUserProfile.isProfileCompleted());
                 break;
             default:
                 loginResponse = new LoginResponse();
@@ -117,7 +126,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private void addHeaders(HttpServletResponse response, String jwToken) {
         response.addHeader(SecurityConstants.AUTHORIZATION_HEADER_KEY, jwToken);
-        response.addHeader(SecurityConstants.EXPIRES_AT_HEADER_KEY, String.valueOf(System.currentTimeMillis() + SecurityConstants.TOKEN_TTL));
+        response.addHeader(SecurityConstants.EXPIRES_AT_HEADER_KEY, String.valueOf(gerTokenExpiryDateMillis()));
         response.addHeader("Access-Control-Expose-Headers", SecurityConstants.AUTHORIZATION_HEADER_KEY);
         response.addHeader("Access-Control-Expose-Headers", SecurityConstants.EXPIRES_AT_HEADER_KEY);
     }
@@ -126,7 +135,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return SecurityConstants.JWT_TOKEN_PREFIX
                 + JWT.create()
                     .withSubject(currentUsername)
-                    .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.TOKEN_TTL))
+                    .withExpiresAt(new Date(gerTokenExpiryDateMillis()))
                     .sign(HMAC512(SecurityConstants.SECRET_SIGNATURE.getBytes()));
+    }
+
+    private long gerTokenExpiryDateMillis() {
+        return System.currentTimeMillis() + SecurityConstants.TOKEN_TTL;
     }
 }
