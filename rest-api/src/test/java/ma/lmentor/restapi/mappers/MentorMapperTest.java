@@ -78,6 +78,7 @@ public class MentorMapperTest {
                 .profileId(mentorId)
                 .fullName(firstName + ' ' + lastName)
                 .title(title)
+                .description(description)
                 .build();
         var mentorItem = mentorMapper.toMentorItem(mentor);
         Assertions.assertEquals(expectedMentorItem, mentorItem);
