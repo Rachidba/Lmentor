@@ -24,6 +24,7 @@ public class MentorProfileVo {
     @NotEmpty(message = "Please enter a title")
     private String title;
     private String description;
+    private String linkedinUrl;
     @NotEmpty(message = "Please choose your city")
     private String city;
     @NotNull(message = "Please choose an expertise field")
