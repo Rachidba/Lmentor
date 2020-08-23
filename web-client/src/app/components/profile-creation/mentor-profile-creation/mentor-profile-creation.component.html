@@ -1,0 +1,248 @@
+<mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="personalInfosFormGroup">
+        <form fxLayout="column">
+            <ng-template matStepLabel>Informations personelles</ng-template>
+            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px">
+                <mat-form-field appearance="outline" fxFlex="50">
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="Prenom"
+                        ngModel
+                        name="fname"
+                        required
+                        #fnameInput="ngModel">
+                    <mat-error *ngIf="fnameInput.hasError('required')">Le prenom est obligatoir.</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="50">
+                    <input 
+                        type="text"
+                        matInput
+                        placeholder="Nom"
+                        ngModel
+                        name="lname"
+                        required
+                        #lnameInput="ngModel">
+                    <mat-error *ngIf="lnameInput.hasError('required')">Le nom est obligatoir.</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px">
+                <mat-form-field appearance="outline" fxFlex="50">
+                    <input
+                        type="text"
+                        matInput
+                        placeholder="Numero de telephone"
+                        ngModel
+                        name="phoneNumber"
+                        required
+                        #phoneNumberInput="ngModel">
+                    <mat-error *ngIf="phoneNumberInput.hasError('required')">Le numero de telephone est obligatoir.</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="50">
+                    <mat-label>Ville</mat-label>
+                    <mat-select>
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option</mat-option>
+                      <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="column">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <input 
+                        type="text"
+                        matInput
+                        placeholder="Titre"
+                        ngModel
+                        name="school"
+                        required
+                        #titleInput="ngModel">
+                    <mat-error *ngIf="titleInput.hasError('required')">Titre est obligatoir.</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <textarea 
+                        type="text"
+                        matInput
+                        placeholder="Presentation"
+                        ngModel
+                        name="school"
+                        required
+                        #shcoolInput="ngModel">
+                    </textarea>
+                </mat-form-field>
+            </div>
+            
+            <div fxLayoutAlign="end">
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="educationInfosFormGroup">
+        <form>
+            <ng-template matStepLabel>Education</ng-template>
+            <section>
+                <h3>Entrer les information sur votre dernier (ou courant) etudes</h3>
+                <div fxLayout="row" fxLayoutGap="5px">
+                    <mat-form-field fxFlex="50" appearance="outline">
+                        <input 
+                            type="text"
+                            matInput
+                            placeholder="Nom de l'ecole"
+                            ngModel
+                            name="school"
+                            required
+                            #shcoolInput="ngModel">
+                        <mat-error *ngIf="shcoolInput.hasError('required')">Le nom de l'ecole est obligatoir.</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="50">
+                        <mat-label>Diplome</mat-label>
+                        <mat-select>
+                          <mat-option value="option">Option</mat-option>
+                          <mat-option value="option">Option</mat-option>
+                          <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap="5px">
+                    <mat-form-field appearance="outline" fxFlex="50">
+                        <mat-label>Annee de debut</mat-label>
+                        <mat-select>
+                        <mat-option value="option">Option</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="50">
+                        <mat-label>Annee de fin</mat-label>
+                        <mat-select>
+                        <mat-option value="option">Option</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" fxFlex="100">
+                        <textarea 
+                            type="text"
+                            matInput
+                            placeholder="Presentation"
+                            ngModel
+                            name="school"
+                            required
+                            #shcoolInput="ngModel">
+                        </textarea>
+                    </mat-form-field>
+                </div>
+            </section>
+            <div fxLayoutAlign="end">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="professionalInfosFormGroup">
+        <form>
+            <ng-template matStepLabel>Travail</ng-template>
+            <section>
+                <h3>Entrer les informations sur votre dernier (ou acctuel) travaille</h3>
+                <div fxLayout="row" fxLayoutGap="5px">
+                    <mat-form-field appearance="outline" fxFlex="50">
+                        <input 
+                            type="text"
+                            matInput
+                            placeholder="Nom de l'entreprise"
+                            ngModel
+                            name="companyName"
+                            required
+                            #companyNameInput="ngModel">
+                        <mat-error *ngIf="companyNameInput.hasError('required')">Le nom de l'ecole est obligatoir.</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="50">
+                        <input 
+                            type="text"
+                            matInput
+                            placeholder="Post dans l'entreprise"
+                            ngModel
+                            name="companyName"
+                            required
+                            #roleInput="ngModel">
+                        <mat-error *ngIf="roleInput.hasError('required')">Le nom de l'ecole est obligatoir.</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap="5px">
+                    <mat-form-field appearance="outline" fxFlex="50">
+                        <mat-label>Annee de debut</mat-label>
+                        <mat-select>
+                        <mat-option value="option">Option</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="50">
+                        <mat-label>Annee de fin</mat-label>
+                        <mat-select>
+                        <mat-option value="option">Option</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                        <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column">
+                    <mat-form-field appearance="outline">
+                        <textarea 
+                            type="text"
+                            matInput
+                            placeholder="Presentation"
+                            ngModel
+                            name="school"
+                            required
+                            #shcoolInput="ngModel">
+                        </textarea>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <input 
+                            type="text"
+                            matInput
+                            placeholder="Linkedin URL"
+                            ngModel
+                            name="school"
+                            required
+                            #titleInput="ngModel">
+                        <mat-error *ngIf="titleInput.hasError('required')">Titre est obligatoir.</mat-error>
+                    </mat-form-field>
+                </div>
+            </section>
+            <div fxLayoutAlign="end">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="expertiseInfosFormGroup">
+        <form>
+            <ng-template matStepLabel>Domaine d'expertise</ng-template>
+            <div fxLayout="column" fxLayoutGap="5px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Annee de debut</mat-label>
+                    <mat-select>
+                    <mat-option value="option">Option</mat-option>
+                    <mat-option value="option">Option</mat-option>
+                    <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Toppings</mat-label>
+                    <mat-select [formControl]="toppings" multiple>
+                      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayoutAlign="end">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+</mat-horizontal-stepper>
