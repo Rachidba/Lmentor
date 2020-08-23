@@ -11,4 +11,5 @@ public class SecurityConstants {
     public static final String EXPIRES_AT_HEADER_KEY = "expiresAt";
     public static final String CATEGORIES_URL = "/api/v1/categories";
     public static final String SUBCATEGORIES_URL = "/api/v1/subcategories";
+    public static final String MENTORS_URL = "/api/v1/mentors";
 }

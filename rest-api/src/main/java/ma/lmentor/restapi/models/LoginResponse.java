@@ -11,6 +11,7 @@ public class LoginResponse {
     private Integer profileId;
     private String fullName;
     private String jwToken;
+    private long tokenExpiryDateMillis;
     private String email;
     private RoleType role;
     private boolean isProfileCompleted;
