@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MentorItem } from 'src/app/models/MentorItem.model';
 
 @Component({
   selector: 'app-mentor-items',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MentorItemComponent implements OnInit {
 
+  @Input() mentors: Set<MentorItem>;
   constructor() { }
 
   ngOnInit(): void {

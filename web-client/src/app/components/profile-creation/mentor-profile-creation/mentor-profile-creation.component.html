@@ -12,7 +12,7 @@
                         name="fname"
                         required
                         #fnameInput="ngModel">
-                    <mat-error *ngIf="fnameInput.hasError('required')">Le prenom est obligatoir.</mat-error>
+                    <mat-error *ngIf="fnameInput.hasError('required')">Entrez votre prenom</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" fxFlex="50">
                     <input 
@@ -23,7 +23,7 @@
                         name="lname"
                         required
                         #lnameInput="ngModel">
-                    <mat-error *ngIf="lnameInput.hasError('required')">Le nom est obligatoir.</mat-error>
+                    <mat-error *ngIf="lnameInput.hasError('required')">Entrez votre nom</mat-error>
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px">
@@ -219,7 +219,6 @@
             </div>
         </form>
     </mat-step>
-
     <mat-step [stepControl]="expertiseInfosFormGroup">
         <form>
             <ng-template matStepLabel>Domaine d'expertise</ng-template>

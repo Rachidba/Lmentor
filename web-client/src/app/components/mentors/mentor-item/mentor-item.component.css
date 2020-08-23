@@ -27,3 +27,8 @@
     text-decoration: none;
     -webkit-transition: color 0.2s;
 }
+
+.isPrimary {
+    background: #ff4081;
+    color: white;
+}
