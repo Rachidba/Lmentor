@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MentorItem } from 'src/app/models/MentorItem.model';
 import { MentorService } from 'src/app/services/mentor/mentor.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { Category } from 'src/app/models/Category.model';
 
 @Component({
   selector: 'app-search',
@@ -9,11 +11,7 @@ import { MentorService } from 'src/app/services/mentor/mentor.service';
 })
 export class SearchComponent implements OnInit {
 
-  categories = [
-    'Programmation',
-    'Marketing',
-    'Design'
-  ]
+  categories: Category[];
   mentors: MentorItem[];
 
   // mentors = [
@@ -45,7 +43,7 @@ export class SearchComponent implements OnInit {
   //   }
   // ]
 
-  constructor(private mentorService: MentorService) { }
+  constructor(private mentorService: MentorService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.getMentors();
@@ -56,6 +54,18 @@ export class SearchComponent implements OnInit {
     .subscribe(
       res => {
         this.mentors = res;
+      }, 
+      err => {
+        console.log('Error: ', err)
+      }
+    );
+  }
+
+  getCategories() {
+    this.categoryService.getCategories()
+    .subscribe(
+      res => {
+        this.categories = res;
       }, 
       err => {
         console.log('Error: ', err)

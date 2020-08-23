@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { LoginComponent } from './components/auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
+import { CategoryService } from './services/category.service';
 import { EducationFormComponent } from './components/education-form/education-form.component';
 import { ExperienceFormComponent } from './components/experience-form/experience-form.component';
 import { MentorService } from './services/mentor/mentor.service';
@@ -55,6 +56,7 @@ import { MentorProfileCreationComponent } from './components/profile-creation/me
   providers: [
     AuthenticationService,
     MentorService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
