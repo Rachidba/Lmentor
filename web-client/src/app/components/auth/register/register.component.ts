@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { MustMatch } from 'src/app/helpers/mustMatchValidator';
 import { RoleType } from 'src/app/models/RoleType';
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) { }
+  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
       role: RoleType.ROLE_MENTOR
     }).subscribe(
       res => {
-        console.log('Res: ', res)
+        this.router.navigate(['/login']);
       }, 
       err => {
         console.log('Error: ', err)

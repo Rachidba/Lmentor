@@ -4,6 +4,7 @@ import { Subject  } from 'rxjs';
 import { Observable } from 'rxjs';
 import { RegisterDTO } from '../models/RegisterDTO.model';
 import { LoginDTO } from '../models/LoginDTO.model';
+import { LoginResponse } from 'src/app/models/LoginResponse.model';
 import { SessionService } from './session.service';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -31,8 +32,8 @@ export class AuthenticationService {
         )
     );
   }
-  public login(loginDto: LoginDTO): Observable<any>  {
-    return this.httpClient.post(this.backendUrl + '/login', loginDto)
+  public login(loginDto: LoginDTO): Observable<LoginResponse>  {
+    return this.httpClient.post<LoginResponse>(this.backendUrl + '/login', loginDto)
       .pipe(
         map( 
           result => {
@@ -40,17 +41,18 @@ export class AuthenticationService {
             return result;
           }, 
           err => {
-            return err
+            return err;
           }
         )
     );
   }
 
-  public logout() {
+  public logout(): void {
+    this.sessionService.removeSession();
     this.authChange.next(false);
   }
 
-  public isAuth() {
-    return false;
+  public isAuth(): boolean {
+    return this.sessionService.isLoggedIn();
   }
 }

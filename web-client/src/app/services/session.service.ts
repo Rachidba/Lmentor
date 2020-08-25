@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
+import { LoginResponse } from '../models/LoginResponse.model';
 
 @Injectable({
     providedIn: 'root'
   })
 export class SessionService {
-    public setSession(authResult) {
-        if (authResult.status == 200) {
-          const id_token = authResult.headers.get("Authorization");
-          const expires_at = authResult.headers.get("expiresAt");
-          const expiresAt = moment().add(expires_at, 'second');
-          localStorage.setItem('id_token', id_token);
-          localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
-        }
+    public setSession(authResult: LoginResponse) {
+        const id_token = authResult.jwToken;
+        const expires_at = authResult.tokenExpiryDateMillis;
+        const expiresAt = moment().add(expires_at, 'second');
+        localStorage.setItem('id_token', id_token);
+        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
     }
 
     public removeSession() {
@@ -29,5 +28,4 @@ export class SessionService {
         const expiresAt = JSON.parse(expiration);
         return moment(expiresAt);
     }
-
 }
