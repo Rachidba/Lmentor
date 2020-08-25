@@ -47,6 +47,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMentors();
+    this.getCategories();
   }
 
   getMentors() {

@@ -13,8 +13,8 @@ export class MentorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public completeCreation(mentorCreationDto: MentorProfileVo): Observable<any> {
-    return this.httpClient.post(this.backendUrl, mentorCreationDto);
+  public completeCreation(mentorProfile: MentorProfileVo): Observable<any> {
+    return this.httpClient.post(this.backendUrl, mentorProfile);
   }
 
   public getMentorsItems(): Observable<any> {
