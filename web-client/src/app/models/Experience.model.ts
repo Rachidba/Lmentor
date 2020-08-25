@@ -5,5 +5,5 @@ export interface Experience {
     startMonth: number;
     endYear: number;
     endMonth: number;
-    descrition: string;
+    description: string;
 }

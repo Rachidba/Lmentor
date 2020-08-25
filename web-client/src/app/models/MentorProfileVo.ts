@@ -10,7 +10,7 @@ export class MentorProfileVo {
         public contactEmail: string,
         public phoneNumber: string,
         public title: string,
-        public descrition: string,
+        public description: string,
         public city: string,
         public expertises: Set<Number>,
         public lastEducation: Eduction,
