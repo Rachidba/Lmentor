@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { MentorProfileVo } from 'src/app/models/MentorProfileVo';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MentorService {
 
-  private backendUrl = "http://161.97.98.232:8080/api/v1/mentors";
+  private backendUrl = environment.apiUrl + '/mentors';
 
   constructor(private httpClient: HttpClient) { }
 

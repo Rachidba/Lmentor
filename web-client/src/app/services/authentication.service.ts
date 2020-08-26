@@ -6,13 +6,15 @@ import { RegisterDTO } from '../models/RegisterDTO.model';
 import { LoginDTO } from '../models/LoginDTO.model';
 import { SessionService } from './session.service';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   authChange = new Subject<boolean>();
-  private backendUrl = "http://161.97.98.232:8080/api/v1";
+
+  private backendUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient, private sessionService: SessionService) { }
 
