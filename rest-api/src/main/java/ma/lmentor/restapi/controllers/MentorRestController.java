@@ -20,7 +20,7 @@ import java.util.Optional;
 import static javax.servlet.http.HttpServletResponse.*;
 
 @RestController
-@RequestMapping("api/v1/mentors")
+@RequestMapping("api/mentors")
 @Api(tags = "Mentor profile API")
 public class MentorRestController {
     private final MentorService mentorService;

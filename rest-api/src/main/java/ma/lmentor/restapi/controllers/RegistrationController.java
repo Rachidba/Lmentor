@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import static javax.servlet.http.HttpServletResponse.SC_CREATED;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api")
 @Api(tags = "Registration API")
 public class RegistrationController {
 
@@ -29,7 +29,7 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/auth/register")
     @ApiOperation(value = "Register new user")
     @ApiResponses(value = {
             @ApiResponse(code = SC_CREATED, message = "User created")

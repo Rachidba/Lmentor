@@ -33,3 +33,11 @@ swagger:
   filter: false
   maxDisplayedTags: 0
   showExtensions: false;
+
+lmentor:
+  security:
+    jwt:
+      tokenExpirationTime: 43800 # Number of minutes => 1 month
+      refreshTokenExpTime: 131400 # 3 months
+      tokenIssuer: http://lmentor.ma
+      tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus

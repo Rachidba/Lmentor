@@ -51,7 +51,7 @@ public class MentorControllerTest extends AbstractTest {
         mentorCreationDto.setLastEducation(educationVo);
         mentorCreationDto.setLastExperience(experienceVo);
 
-        var url = "/api/v1/mentors";
+        var url = "/api/mentors";
         var inputJson = super.mapToJson(mentorCreationDto);
         var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
