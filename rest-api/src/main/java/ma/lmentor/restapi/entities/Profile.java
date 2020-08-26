@@ -22,8 +22,6 @@ public class Profile {
     protected String firstName;
     @Column(name = "last_name")
     protected String lastName;
-    @Column(unique = true)
-    protected String contactEmail;
     @Column(name = "phone_number")
     protected String phoneNumber;
     @Column(name = "is_profile_completed")
@@ -43,9 +41,6 @@ public class Profile {
     }
     public String getLastName() {
         return lastName;
-    }
-    public String getContactEmail() {
-        return contactEmail;
     }
     public String getPhoneNumber() {
         return phoneNumber;

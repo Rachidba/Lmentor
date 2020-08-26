@@ -28,7 +28,6 @@ public class StudentMapperTest {
         var expectedStudent = Student.builder()
                 .firstName(firstName)
                 .lastName(lastName)
-                .contactEmail(contactEmail)
                 .phoneNumber(phoneNumber)
                 .build();
         Assertions.assertEquals(expectedStudent, actualStudent);

@@ -16,9 +16,6 @@ public class MentorProfileVo {
     private String firstName;
     @NotEmpty(message = "Please enter your last name")
     private String lastName;
-    @NotEmpty(message = "Please enter your email")
-    @Email(message = "Please enter a valid email address")
-    private String contactEmail;
     @NotEmpty(message = "Please enter your phone number")
     private String phoneNumber;
     @NotEmpty(message = "Please enter a title")
