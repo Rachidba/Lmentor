@@ -14,18 +14,16 @@ public class MentorDetailsDto {
     private String fullName;
     private String title;
     private String description;
-    private String contactEmail;
     private String phoneNumber;
     private double sessionPrice;
     private boolean isProfileCompleted;
     private Set<EducationDto> educations;
     private Set<ExperienceDto> experiences;
 
-    public MentorDetailsDto(Integer profileId, String fullName, String contactEmail, String phoneNumber,
+    public MentorDetailsDto(Integer profileId, String fullName, String phoneNumber,
                             String title, String description, double sessionPrice) {
         this.profileId = profileId;
         this.fullName = fullName;
-        this.contactEmail = contactEmail;
         this.phoneNumber = phoneNumber;
         this.title = title;
         this.description = description;

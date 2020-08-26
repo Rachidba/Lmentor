@@ -31,9 +31,9 @@ public class Mentor extends Profile {
     // Add birthday
 
     // TODO Remove this
-    public Mentor(Integer profileId, User user, String firstName, String lastName, String email, String phoneNumber,
+    public Mentor(Integer profileId, User user, String firstName, String lastName, String phoneNumber,
                              String title, String description, double sessionPrice) {
-        super(profileId, firstName, lastName, email, phoneNumber, false, user);
+        super(profileId, firstName, lastName, phoneNumber, false, user);
         this.title = title;
         this.description = description;
         this.sessionPrice = sessionPrice;

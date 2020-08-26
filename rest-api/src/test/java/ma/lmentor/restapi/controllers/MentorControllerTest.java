@@ -44,7 +44,6 @@ public class MentorControllerTest extends AbstractTest {
         mentorCreationDto.setGender(GenderType.GENDER_MALE);
         mentorCreationDto.setFirstName("Rachid");
         mentorCreationDto.setLastName("BAAZIZ");
-        mentorCreationDto.setContactEmail("rachidbaaziz.contact@gmail.com");
         mentorCreationDto.setTitle("Software engineer");
         mentorCreationDto.setCity("Casablanca");
         mentorCreationDto.setPhoneNumber("06125478");

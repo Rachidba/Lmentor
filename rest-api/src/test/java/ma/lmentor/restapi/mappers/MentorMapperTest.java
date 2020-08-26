@@ -32,7 +32,6 @@ public class MentorMapperTest {
                 .gender(gender)
                 .firstName(firstName)
                 .lastName(lastName)
-                .contactEmail(email)
                 .phoneNumber(phoneNumber)
                 .title(title)
                 .description(description)
@@ -41,7 +40,6 @@ public class MentorMapperTest {
 
         var expectedMentor = Mentor.builder()
                 .gender(gender)
-                .contactEmail(email)
                 .phoneNumber(phoneNumber)
                 .title(title)
                 .description(description)
@@ -68,7 +66,6 @@ public class MentorMapperTest {
                 .user(user)
                 .firstName(firstName)
                 .lastName(lastName)
-                .contactEmail(email)
                 .phoneNumber(phoneNumber)
                 .title(title)
                 .description(description)
@@ -95,8 +92,8 @@ public class MentorMapperTest {
         String title = "Software engineer";
         String description = "A description";
         double sessionPrice = 100;
-        var mentor = new Mentor(mentorId, user, firstName, lastName, email, phoneNumber, title, description, sessionPrice);
-        var expectedMentorDetails = new MentorDetailsDto(mentorId, firstName + ' ' + lastName, email, phoneNumber, title, description, sessionPrice);
+        var mentor = new Mentor(mentorId, user, firstName, lastName, phoneNumber, title, description, sessionPrice);
+        var expectedMentorDetails = new MentorDetailsDto(mentorId, firstName + ' ' + lastName, phoneNumber, title, description, sessionPrice);
         var mentorItem = mentorMapper.toMentorDetails(mentor);
         Assertions.assertEquals(expectedMentorDetails, mentorItem);
     }

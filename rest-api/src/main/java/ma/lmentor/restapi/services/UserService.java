@@ -2,6 +2,8 @@ package ma.lmentor.restapi.services;
 
 import ma.lmentor.restapi.entities.User;
 import ma.lmentor.restapi.repositories.UserRepository;
+import ma.lmentor.restapi.security.auth.JwtAuthenticationToken;
+import ma.lmentor.restapi.security.model.UserContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,8 @@ public class UserService {
     }
 
     public Optional<User> getCurrentUser() {
-        var auth = SecurityContextHolder.getContext().getAuthentication();
-        var currentUsername = auth.getName();
+        JwtAuthenticationToken auth = (JwtAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+        var currentUsername = ((UserContext)auth.getPrincipal()).getUsername();
         return this.get(currentUsername);
     }
 }
