@@ -20,7 +20,7 @@ import static javax.servlet.http.HttpServletResponse.SC_OK;
 import static javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
 
 @RestController
-@RequestMapping("api/v1/students/profile")
+@RequestMapping("api/students/profile")
 @Api(tags = "Student profile API")
 public class StudentProfileController {
 

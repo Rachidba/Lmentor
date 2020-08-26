@@ -18,7 +18,7 @@ import java.util.Set;
 import static javax.servlet.http.HttpServletResponse.*;
 
 @RestController
-@RequestMapping("api/v1/categories")
+@RequestMapping("api/categories")
 @Api(tags = "Category API")
 public class CategoryController {
 

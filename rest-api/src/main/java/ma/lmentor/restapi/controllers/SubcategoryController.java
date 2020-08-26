@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import static javax.servlet.http.HttpServletResponse.*;
 
 @RestController
-@RequestMapping("api/v1/subcategories")
+@RequestMapping("api/subcategories")
 @Api(tags = "Subcategory API")
 public class SubcategoryController {
     private SubcategoryService subcategoryService;

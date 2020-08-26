@@ -19,15 +19,11 @@ public class RegistrationControllerTest extends AbstractTest {
 
     @Test
     public void register_shouldReturn400_whenNonExistingFields() throws Exception {
-        /*
-
-        */
-
         var registerDto = new RegistrationVo();
         registerDto.setEmail("rachidba");
         registerDto.setPassword("password");
 
-        var url = "/api/v1/register";
+        var url = "/api/auth/register";
         var inputJson = super.mapToJson(registerDto);
         var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -51,7 +47,7 @@ public class RegistrationControllerTest extends AbstractTest {
         registerDto.setPassword("password");
         registerDto.setRole(RoleType.ROLE_MENTOR);
 
-        var url = "/api/v1/register";
+        var url = "/api/auth/register";
         var inputJson = super.mapToJson(registerDto);
         var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -74,7 +70,7 @@ public class RegistrationControllerTest extends AbstractTest {
         registerDto.setPassword("password");
         registerDto.setRole(RoleType.ROLE_MENTOR);
 
-        var url = "/api/v1/register";
+        var url = "/api/auth/register";
         var inputJson = super.mapToJson(registerDto);
         var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
