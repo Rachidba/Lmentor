@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ma.lmentor.restapi.entities.User;
 import ma.lmentor.restapi.security.model.UserContext;
 import ma.lmentor.restapi.security.model.token.JwtToken;
 import ma.lmentor.restapi.security.model.token.JwtTokenFactory;
+import ma.lmentor.restapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,24 +28,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AjaxAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     private final ObjectMapper mapper;
     private final JwtTokenFactory tokenFactory;
+    private final UserService userService;
 
     @Autowired
-    public AjaxAwareAuthenticationSuccessHandler(final ObjectMapper mapper, final JwtTokenFactory tokenFactory) {
+    public AjaxAwareAuthenticationSuccessHandler(
+            final ObjectMapper mapper,
+            final JwtTokenFactory tokenFactory,
+            final UserService userService) {
         this.mapper = mapper;
         this.tokenFactory = tokenFactory;
+        this.userService = userService;
     }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-            Authentication authentication) throws IOException, ServletException {
+                                        Authentication authentication) throws IOException, ServletException {
         UserContext userContext = (UserContext) authentication.getPrincipal();
-        
+        User currentUser = userService.get(userContext.getUsername()).get();
         JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
         JwtToken refreshToken = tokenFactory.createRefreshToken(userContext);
         
         Map<String, String> tokenMap = new HashMap<String, String>();
         tokenMap.put("token", accessToken.getToken());
         tokenMap.put("refreshToken", refreshToken.getToken());
+        tokenMap.put("isProfileCompleted", String.valueOf(currentUser.getProfile().isProfileCompleted()));
+        tokenMap.put("profileId", String.valueOf(currentUser.getProfile().getProfileId()));
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
