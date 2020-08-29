@@ -4,23 +4,28 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SearchComponent } from './components/mentors/search/search.component';
-import { AuthGard } from './services/auth.guard';
+import { NotAuthenticatedGard } from './services/auth/not-authenticated.guard';
+import { NotCompletedProfileGuard } from './services/auth/not-completed-profile.guard';
+import { AuthenticatedGard } from './services/auth/authenticated.guard';
 import { MentorProfileCreationComponent } from './components/profile-creation/mentor-profile-creation/mentor-profile-creation.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'search', component: SearchComponent },
-  // { path: 'mentorprofilecreation', component: MentorProfileCreationComponent, canActivate: [AuthGard] },
-  { path: 'mentorprofilecreation', component: MentorProfileCreationComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthenticatedGard]  },
+  { path: 'login', component: LoginComponent, canActivate: [AuthenticatedGard]  },
+  { path: 'search', component: SearchComponent  },
+  { path: 'mentorprofilecreation', component: MentorProfileCreationComponent, canActivate: [NotAuthenticatedGard] },
   { path: 'home', redirectTo : '/' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGard]
+  providers: [
+    NotAuthenticatedGard,
+    AuthenticatedGard,
+    NotCompletedProfileGuard
+  ]
 })
 export class AppRoutingModule { }

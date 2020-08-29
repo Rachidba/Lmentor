@@ -9,8 +9,8 @@
   </div>
   <div fxFlex fxLayout fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-      <li><a routerLink="/register">Comment ca marche</a></li>
-      <li><a routerLink="/login">Devenir mentor</a></li>
+      <li><a routerLink="/">Comment ca marche</a></li>
+      <li><a *ngIf="!isAuth" routerLink="/register">Devenir mentor</a></li>
     </ul>
   </div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>

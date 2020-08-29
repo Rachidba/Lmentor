@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MentorItem } from 'src/app/models/MentorItem.model';
-import { MentorService } from 'src/app/services/mentor/mentor.service';
-import { CategoryService } from 'src/app/services/category.service';
+import { MentorService } from 'src/app/services/mentors/mentor.service';
+import { CategoryService } from 'src/app/services/categories/category.service';
 import { Category } from 'src/app/models/Category.model';
 
 @Component({

@@ -1,7 +1,7 @@
 <section class="search-results" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
     <mat-card *ngFor="let mentor of mentors" class="example-card">
         <mat-card-header>
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{ mentor.fullName }}</mat-card-title>
           <mat-card-subtitle>{{ mentor.title }}</mat-card-subtitle>
         </mat-card-header>
@@ -9,8 +9,6 @@
             <div fxLayout="row" fxLayoutGap="5px" *ngIf="mentor.expertiseAreas.length > 0">
                 <ul class="tags">
                     <li><span class="tag isPrimary" color="primary"> {{ mentor.expertiseAreas[0].categoryName }} </span></li>
-                </ul>
-                <ul class="tags">
                     <li *ngFor="let item of mentor.expertiseAreas"><span class="tag">{{ item.subcategoryName }}</span></li>
                 </ul>
             </div>

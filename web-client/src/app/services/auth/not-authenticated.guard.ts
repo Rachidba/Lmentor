@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable()
-export class AuthGard implements CanActivate{
+export class NotAuthenticatedGard implements CanActivate{
     constructor(private authService: AuthenticationService, private router: Router) {}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.authService.isAuth()) {

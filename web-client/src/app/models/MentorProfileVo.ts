@@ -7,12 +7,11 @@ export class MentorProfileVo {
         public gender: GenderType,
         public firstName: string,
         public lastName: string,
-        public contactEmail: string,
         public phoneNumber: string,
         public title: string,
         public description: string,
         public city: string,
-        public expertises: Set<Number>,
+        public expertises: Number[],
         public lastEducation: Eduction,
         public lastExperience: Experience
     ) {}

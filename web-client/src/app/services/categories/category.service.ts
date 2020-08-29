@@ -13,16 +13,16 @@ export class CategoryService {
     constructor(private httpClient: HttpClient) { }
 
     public getCategories(): Observable<any> {
-        return this.httpClient.get(this.backendUrl)
-          .pipe(
-            map(
-              result => {
-                return result;
-              }, 
-              err => {
-                return err
-              }
-            )
-        );
+      return this.httpClient.get(this.backendUrl)
+        .pipe(
+          map(
+            result => {
+              return result;
+            }, 
+            err => {
+              return err
+            }
+          )
+      );
     }
 }
