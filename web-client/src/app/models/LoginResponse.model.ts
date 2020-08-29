@@ -1,10 +1,6 @@
-import { RoleType } from './RoleType';
-
 export interface LoginResponse {
+    token: string;
+    refreshToken: string;
     profileId: number;
-    fullName: string;
-    jwToken: string;
-    tokenExpiryDateMillis: number;
-    email: string;
-    role: RoleType;
+    isProfileCompleted: boolean;
 }

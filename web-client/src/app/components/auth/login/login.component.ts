@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     if (this.loginForm.invalid)
       return;
 
@@ -34,14 +33,10 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.controls.email.value,
       password: this.loginForm.controls.password.value
     }).subscribe(res => {
-      this.authenticationService.authChange.next(true);
       this.router.navigate(['/']);
     }, 
     (err: HttpErrorResponse) => {
       console.log('Error: ', err)
     });
   }
-
-  
-
 }

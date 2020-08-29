@@ -4,8 +4,8 @@ import { Category } from 'src/app/models/Category.model';
 import { GenderType } from 'src/app/models/GenderType';
 import { MentorProfileVo } from 'src/app/models/MentorProfileVo';
 import { Subcategory } from 'src/app/models/Subcategory.model';
-import { CategoryService } from 'src/app/services/category.service';
-import { MentorService } from 'src/app/services/mentor/mentor.service';
+import { CategoryService } from 'src/app/services/categories/category.service';
+import { MentorService } from 'src/app/services/mentors/mentor.service';
 
 @Component({
   selector: 'app-mentor-profile-creation',
@@ -118,13 +118,11 @@ export class MentorProfileCreationComponent implements OnInit {
       endMonth: -1,
       description: this.professionalFormControls.description.value
     };
-    let subcategories = new Set<number>();
-    subcategories.add(1).add(2);
+    let subcategories: number[] = this.experienceFormControls.subcategories.value;
     return new MentorProfileVo(
       GenderType.GENDER_OTHER,
       this.personalFormControls.fName.value,
       this.personalFormControls.lName.value,
-      null,
       this.personalFormControls.phoneNumber.value,
       this.personalFormControls.title.value,
       this.personalFormControls.description.value,

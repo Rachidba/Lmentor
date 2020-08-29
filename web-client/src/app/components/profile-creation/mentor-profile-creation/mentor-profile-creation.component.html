@@ -90,18 +90,18 @@
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de debut</mat-label>
                         <mat-select formControlName="startYear">
-                            <mat-option value="option">Option</mat-option>
-                            <mat-option value="option">Option</mat-option>
-                            <mat-option value="option">Option</mat-option>
+                            <mat-option value="2222">Option</mat-option>
+                            <mat-option value="2223">Option</mat-option>
+                            <mat-option value="1234">Option</mat-option>
                         </mat-select>
                         <mat-error *ngIf="educationFormControls.startYear.errors?.required">Ce champ est obligatoire</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de fin</mat-label>
                         <mat-select formControlName="endYear">
-                            <mat-option value="option">Option</mat-option>
-                            <mat-option value="option">Option</mat-option>
-                            <mat-option value="option">Option</mat-option>
+                            <mat-option value="1234">Option</mat-option>
+                            <mat-option value="2134">Option</mat-option>
+                            <mat-option value="2342">Option</mat-option>
                         </mat-select>
                         <mat-error *ngIf="educationFormControls.endYear.errors?.required">Ce champ est obligatoire</mat-error>
                     </mat-form-field>
@@ -148,17 +148,17 @@
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de debut</mat-label>
                         <mat-select formControlName="startYear">
-                            <mat-option value="option">Option</mat-option>
-                            <mat-option value="option">Option</mat-option>
-                            <mat-option value="option">Option</mat-option>
+                            <mat-option value="2342">Option</mat-option>
+                            <mat-option value="5432">Option</mat-option>
+                            <mat-option value="3455">Option</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de fin</mat-label>
                         <mat-select formControlName="endYear">
-                            <mat-option value="option">Option</mat-option>
-                            <mat-option value="option">Option</mat-option>
-                            <mat-option value="option">Option</mat-option>
+                            <mat-option value="3322">Option</mat-option>
+                            <mat-option value="3452">Option</mat-option>
+                            <mat-option value="3424">Option</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -207,7 +207,7 @@
             </div>
             <div fxLayoutAlign="end">
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button  (click)="onSubmitForm()">Enregistrer</button>
+                <button mat-button (click)="onSubmitForm()">Enregistrer</button>
             </div>
         </form>
     </mat-step>

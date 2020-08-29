@@ -15,7 +15,18 @@ export class MentorService {
   constructor(private httpClient: HttpClient) { }
 
   public completeCreation(mentorProfile: MentorProfileVo): Observable<any> {
-    return this.httpClient.post(this.backendUrl, mentorProfile);
+    return this.httpClient.post(this.backendUrl, mentorProfile)
+    .pipe(
+      map(
+        result => {
+          localStorage.setItem('isProfileCompleted', 'true');
+          return result;
+        }, 
+        err => {
+          return err
+        }
+      )
+    );
   }
 
   public getMentorsItems(): Observable<any> {

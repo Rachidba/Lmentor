@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { MustMatch } from 'src/app/helpers/mustMatchValidator';
 import { RoleType } from 'src/app/models/RoleType';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 
 @Component({
   selector: 'app-register',

@@ -7,7 +7,7 @@
       <mat-icon>face</mat-icon>
       <span class="nav-caption">S'authentifier</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="onCloseSidenav()">
+    <a mat-list-item routerLink="/" (click)="onCloseSidenav()">
       <mat-icon>face</mat-icon>
       <span class="nav-caption">Comment ca marche</span>
     </a>
@@ -15,11 +15,11 @@
       <mat-icon>face</mat-icon>
       <span class="nav-caption">Chercher un mentor</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="onCloseSidenav()">
+    <a mat-list-item *ngIf="!isAuth" routerLink="/register" (click)="onCloseSidenav()">
       <mat-icon>face</mat-icon>
       <span class="nav-caption">Devenir mentor</span>
     </a>
-    <mat-list-item  *ngIf="isAuth">
+    <mat-list-item *ngIf="isAuth">
       <button mat-icon-button  (click)="logout()">
         <mat-icon>eject</mat-icon>
         <span class="nav-caption">Se deconnecter</span>
