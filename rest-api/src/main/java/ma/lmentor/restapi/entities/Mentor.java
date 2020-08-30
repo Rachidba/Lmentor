@@ -28,6 +28,7 @@ public class Mentor extends Profile {
     private Set<Education> educations;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
     private Set<Experience> experiences;
+    //Add linkedin profile
     // Add birthday
 
     // TODO Remove this

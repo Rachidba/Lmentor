@@ -7,7 +7,6 @@ public class MentorProfileDto extends ProfileDto {
     private String description;
     private String email;
     private String phoneNumber;
-    private double sessionPrice;
     private Set<EducationDto> educations;
     private Set<ExperienceDto> experiences;
 }

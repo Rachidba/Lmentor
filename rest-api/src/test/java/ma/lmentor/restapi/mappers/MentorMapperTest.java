@@ -66,10 +66,8 @@ public class MentorMapperTest {
                 .user(user)
                 .firstName(firstName)
                 .lastName(lastName)
-                .phoneNumber(phoneNumber)
                 .title(title)
                 .description(description)
-                .sessionPrice(sessionPrice)
                 .build();
         var expectedMentorItem = MentorItemDto.builder()
                 .profileId(mentorId)
@@ -87,13 +85,16 @@ public class MentorMapperTest {
         var user = new User();
         String firstName = "Rachid";
         String lastName = "BAAZIZ";
-        String email = "rachidbaaziz.contact@gmail.com";
-        String phoneNumber = "+212777458294";
         String title = "Software engineer";
         String description = "A description";
-        double sessionPrice = 100;
-        var mentor = new Mentor(mentorId, user, firstName, lastName, phoneNumber, title, description, sessionPrice);
-        var expectedMentorDetails = new MentorDetailsDto(mentorId, firstName + ' ' + lastName, phoneNumber, title, description, sessionPrice);
+        var mentor = Mentor.builder()
+                .profileId(mentorId)
+                .user(user)
+                .firstName(firstName)
+                .lastName(lastName)
+                .title(title)
+                .description(description).build();
+        var expectedMentorDetails = new MentorDetailsDto(mentorId, firstName + ' ' + lastName, title, description);
         var mentorItem = mentorMapper.toMentorDetails(mentor);
         Assertions.assertEquals(expectedMentorDetails, mentorItem);
     }
