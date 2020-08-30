@@ -17,7 +17,6 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class CategoryServiceTest {
-
     @Mock
     private CategoryRepository categoryRepository;
     @Mock
@@ -45,5 +44,4 @@ public class CategoryServiceTest {
         var actualCategory = categoryService.createCategory(new CategoryVo());
         Assertions.assertEquals(category.getCategoryName(), actualCategory.getCategoryName());
     }
-
 }
