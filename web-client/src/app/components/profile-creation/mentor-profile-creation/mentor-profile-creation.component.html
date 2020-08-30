@@ -1,8 +1,9 @@
-<mat-horizontal-stepper [linear]="true" #stepper >
-    <mat-step [stepControl]="personalInfosFormGroup">
+<div fxLayout="row" fxLayoutAlign="center canter">
+<mat-horizontal-stepper [linear]="true" #stepper fxFlex.xs="100" fxFlex.gt-xs="80" fxFlex.gt-sm="60">
+    <mat-step [stepControl]="personalInfosFormGroup" >
         <form [formGroup]="personalInfosFormGroup" fxLayout="column">
             <ng-template matStepLabel>Informations personelles</ng-template>
-            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px">
+            <div fxLayout="row" fxLayoutGap="5px">
                 <mat-form-field appearance="outline" fxFlex="50">
                     <input
                         type="text"
@@ -32,9 +33,7 @@
                 <mat-form-field appearance="outline" fxFlex="50">
                     <mat-label>Ville</mat-label>
                     <mat-select formControlName="city">
-                      <mat-option value="option">Option</mat-option>
-                      <mat-option value="option">Option</mat-option>
-                      <mat-option value="option">Option</mat-option>
+                      <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -50,8 +49,9 @@
                 <mat-form-field appearance="outline" fxFlex="100">
                     <textarea 
                         type="text"
+                        rows="4"
                         matInput
-                        placeholder="Presentation"
+                        placeholder="Entrez votre description (Presentez vos competences et comment vous pouvez aider vos etudiants a attendre leurs objectifs)"
                         formControlName="description">
                     </textarea>
                 </mat-form-field>
@@ -66,7 +66,7 @@
         <form [formGroup]="educationInfosFormGroup">
             <ng-template matStepLabel>Education</ng-template>
             <section>
-                <h3>Entrer les information sur votre dernier (ou courant) etudes</h3>
+                <h3>Entrer les informations sur votre dernier (ou courant) etudes</h3>
                 <div fxLayout="row" fxLayoutGap="5px">
                     <mat-form-field fxFlex="50" appearance="outline">
                         <input 
@@ -79,9 +79,11 @@
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Diplome</mat-label>
                         <mat-select formControlName="degree">
-                          <mat-option value="option">Option</mat-option>
-                          <mat-option value="option">Option</mat-option>
-                          <mat-option value="option">Option</mat-option>
+                            <mat-option value="Bac+2">Bac+2</mat-option>
+                            <mat-option value="Licence">Licence</mat-option>
+                            <mat-option value="Master">Master</mat-option>
+                            <mat-option value="Doctorat">Doctorat</mat-option>
+                            <mat-option value="Autre">Autre</mat-option>
                         </mat-select>
                         <mat-error *ngIf="educationFormControls.degree.errors?.required">Ce champ est obligatoire</mat-error>
                     </mat-form-field>
@@ -90,18 +92,16 @@
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de debut</mat-label>
                         <mat-select formControlName="startYear">
-                            <mat-option value="2222">Option</mat-option>
-                            <mat-option value="2223">Option</mat-option>
-                            <mat-option value="1234">Option</mat-option>
+                            <mat-option value="-1">Avant 2000</mat-option>
+                            <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="educationFormControls.startYear.errors?.required">Ce champ est obligatoire</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de fin</mat-label>
                         <mat-select formControlName="endYear">
-                            <mat-option value="1234">Option</mat-option>
-                            <mat-option value="2134">Option</mat-option>
-                            <mat-option value="2342">Option</mat-option>
+                            <mat-option value="-1">Avant 2000</mat-option>
+                            <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="educationFormControls.endYear.errors?.required">Ce champ est obligatoire</mat-error>
                     </mat-form-field>
@@ -110,6 +110,7 @@
                     <mat-form-field appearance="outline" fxFlex="100">
                         <textarea 
                             type="text"
+                            rows="2"
                             matInput
                             placeholder="Description"
                             formControlName="description">
@@ -148,17 +149,15 @@
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de debut</mat-label>
                         <mat-select formControlName="startYear">
-                            <mat-option value="2342">Option</mat-option>
-                            <mat-option value="5432">Option</mat-option>
-                            <mat-option value="3455">Option</mat-option>
+                            <mat-option value="-1">Avant 2000</mat-option>
+                            <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de fin</mat-label>
                         <mat-select formControlName="endYear">
-                            <mat-option value="3322">Option</mat-option>
-                            <mat-option value="3452">Option</mat-option>
-                            <mat-option value="3424">Option</mat-option>
+                            <mat-option value="-1">Avant 2000</mat-option>
+                            <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -166,6 +165,7 @@
                     <mat-form-field appearance="outline">
                         <textarea 
                             type="text"
+                            rows="2"
                             matInput
                             placeholder="Description"
                             formControlName="description">
@@ -212,3 +212,4 @@
         </form>
     </mat-step>
 </mat-horizontal-stepper>
+</div>

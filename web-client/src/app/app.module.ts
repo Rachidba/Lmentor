@@ -8,9 +8,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { LoginComponent } from './components/auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/auth/authentication.service';
+import { AppSettingsService } from './services/AppSettingsService.service';
 import { CategoryService } from './services/categories/category.service';
-import { EducationFormComponent } from './components/education-form/education-form.component';
-import { ExperienceFormComponent } from './components/experience-form/experience-form.component';
 import { MentorService } from './services/mentors/mentor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -32,8 +31,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    EducationFormComponent,
-    ExperienceFormComponent,
     HeaderComponent,
     SidenavListComponent,
     SearchComponent,
@@ -65,7 +62,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
       useClass: CustomHttpInterceptor,
       multi: true
     },
-    JwtHelperService
+    JwtHelperService,
+    AppSettingsService,
   ],
   bootstrap: [AppComponent]
 })

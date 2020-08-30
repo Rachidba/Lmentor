@@ -10,5 +10,6 @@ export class NotAuthenticatedGard implements CanActivate{
             return true;
         }
         this.router.navigate(['/login']);
+        return false;
     }
 }
