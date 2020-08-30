@@ -67,6 +67,8 @@ export class AuthenticationService {
   public logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('profileId');
+    localStorage.removeItem('isProfileCompleted');
     this.authChange.next(false);
   }
 

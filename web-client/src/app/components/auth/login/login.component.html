@@ -1,33 +1,31 @@
-<div>
-    <h1>Connectez vous</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
-      <div fxLayout="row">
-        <div fxFlexOffset="10" fxFlex="70">
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Entrez votre email</mat-label>
-            <input matInput type="text" formControlName="email" [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
-            <mat-error *ngIf="submitted && formControls.email.errors">
-              <mat-error *ngIf="formControls.email.errors.required">L'email est obligatoir</mat-error>
-              <mat-error *ngIf="formControls.email.errors.email">L'email doit etre une adresse email valide</mat-error>
-            </mat-error>
-          </mat-form-field>
+<div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 20px;">
+  <mat-card class="example-card" fxFlex.xs="100" fxFlex.gt-xs="80" fxFlex.gt-sm="60" fxFlex.gt-md="40">
+    <mat-card-header fxLayoutAlign="center">
+      <mat-card-title><h1>Formulaire d'authenification</h1></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card *ngIf="incorrectEmailOrPassword" style="background-color: red; color: white; margin-bottom: 10px;">Email ou mot de passe incorrect!</mat-card>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column">
+        <mat-form-field class="full-width" appearance="outline"  fxFlex="80">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email" [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
+          <mat-error *ngIf="submitted && formControls.email.errors">
+            <mat-error *ngIf="formControls.email.errors.required">Ce champ est obligatoire</mat-error>
+            <mat-error *ngIf="formControls.email.errors.email">Entrez une adresse email valide</mat-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }">
+          <mat-error *ngIf="submitted && formControls.password.errors">
+              <mat-error *ngIf="formControls.password.errors.required">Ce champ est obligatoire</mat-error>
+          </mat-error>
+        </mat-form-field>
+        <p>Vous navez pas de compte ? <a [routerLink]="['/register']" routerLinkActive="router-link-active" >Creer un</a></p>
+        <div fxLayoutAlign="end">
+          <button color="primary" mat-raised-button type="submit">Se connecter</button>
         </div>
-      </div>
-      <div fxLayout="row">
-        <div fxFlexOffset="10" fxFlex="70">
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Choisissez un mot de passe</mat-label>
-            <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }">
-            <mat-error *ngIf="submitted && formControls.password.errors">
-                <mat-error *ngIf="formControls.password.errors.required">Le mot de passe est obligatoir</mat-error>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div fxLayout="row">
-        <div fxFlexOffset="10" fxFlex="70" fxLayoutAlign="end">
-          <button color="accent" mat-raised-button type="submit">Se connecter</button>
-        </div>
-      </div>
     </form>
+    </mat-card-content>
+  </mat-card>
 </div>

@@ -4,6 +4,7 @@ import { Category } from 'src/app/models/Category.model';
 import { GenderType } from 'src/app/models/GenderType';
 import { MentorProfileVo } from 'src/app/models/MentorProfileVo';
 import { Subcategory } from 'src/app/models/Subcategory.model';
+import { AppSettingsService } from 'src/app/services/AppSettingsService.service';
 import { CategoryService } from 'src/app/services/categories/category.service';
 import { MentorService } from 'src/app/services/mentors/mentor.service';
 
@@ -11,6 +12,7 @@ import { MentorService } from 'src/app/services/mentors/mentor.service';
   selector: 'app-mentor-profile-creation',
   templateUrl: './mentor-profile-creation.component.html',
   styleUrls: ['./mentor-profile-creation.component.css']
+  
 })
 export class MentorProfileCreationComponent implements OnInit {
   categories: Category[];
@@ -21,9 +23,10 @@ export class MentorProfileCreationComponent implements OnInit {
   educationInfosFormGroup: FormGroup;
   expertiseInfosFormGroup: FormGroup;
   subcategories: Subcategory[];
+  cities: string[];
+  years: string[];
 
-
-  constructor(private categoryService: CategoryService, private mentorService: MentorService, private formbuilder: FormBuilder) { }
+  constructor(private categoryService: CategoryService, private mentorService: MentorService, private formbuilder: FormBuilder, private appSettrings: AppSettingsService) { }
 
   ngOnInit(): void {
     this.personalInfosFormGroup = this.formbuilder.group({
@@ -56,7 +59,12 @@ export class MentorProfileCreationComponent implements OnInit {
       category: ['', Validators.required],
       subcategories: ['', Validators.required]
     });
-
+    this.appSettrings.getCities().subscribe(data => {
+      this.cities = data;
+    });
+    this.appSettrings.getYears().subscribe(data => {
+      this.years = data;
+    });
     this.getCategories();
   }
   getCategories() {

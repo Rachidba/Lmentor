@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
+  incorrectEmailOrPassword: boolean = false;
   constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.incorrectEmailOrPassword = false;
     if (this.loginForm.invalid)
       return;
 
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }, 
     (err: HttpErrorResponse) => {
-      console.log('Error: ', err)
+      this.incorrectEmailOrPassword = true;
     });
   }
 }

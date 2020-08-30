@@ -6,8 +6,10 @@ import { AuthenticationService } from './authentication.service';
 export class AuthenticatedGard implements CanActivate{
     constructor(private authService: AuthenticationService, private router: Router) {}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.authService.isAuth())
+        if (this.authService.isAuth()) {
             this.router.navigate(['/']);
-        return false;
+            return false;
+        }   
+        return true;
     }
 }
