@@ -94,7 +94,13 @@ public class MentorMapperTest {
                 .lastName(lastName)
                 .title(title)
                 .description(description).build();
-        var expectedMentorDetails = new MentorDetailsDto(mentorId, firstName + ' ' + lastName, title, description);
+        var expectedMentorDetails = MentorDetailsDto
+                .builder()
+                .profileId(mentorId)
+                .fullName(firstName + ' ' + lastName)
+                .title(title)
+                .description(description)
+                .build();
         var mentorItem = mentorMapper.toMentorDetails(mentor);
         Assertions.assertEquals(expectedMentorDetails, mentorItem);
     }
