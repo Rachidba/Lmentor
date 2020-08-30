@@ -8,15 +8,17 @@ import { NotAuthenticatedGard } from './services/auth/not-authenticated.guard';
 import { NotCompletedProfileGuard } from './services/auth/not-completed-profile.guard';
 import { AuthenticatedGard } from './services/auth/authenticated.guard';
 import { MentorProfileCreationComponent } from './components/profile-creation/mentor-profile-creation/mentor-profile-creation.component';
+import { MentorProfileComponent } from './components/mentors/mentor-profile/mentor-profile.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent, canActivate: [AuthenticatedGard]  },
   { path: 'login', component: LoginComponent, canActivate: [AuthenticatedGard]  },
-  { path: 'search', component: SearchComponent  },
+  { path: 'mentors', component: SearchComponent  },
   { path: 'mentorprofilecreation', component: MentorProfileCreationComponent, canActivate: [NotAuthenticatedGard] },
-  { path: 'home', redirectTo : '/' }
+  { path: 'home', redirectTo : '/' },
+  { path: 'mentors/:id', component: MentorProfileComponent }
 ];
 
 @NgModule({

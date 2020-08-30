@@ -4,6 +4,7 @@ import { MentorProfileVo } from 'src/app/models/MentorProfileVo';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { MentorDetails } from 'src/app/models/MentorDetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,20 @@ export class MentorService {
 
   public getMentorsItems(): Observable<any> {
     return this.httpClient.get(this.backendUrl)
+      .pipe(
+        map(
+          result => {
+            return result;
+          }, 
+          err => {
+            return err
+          }
+        )
+      );
+  }
+
+  public getMentorDetails(profileId: number): Observable<MentorDetails> {
+    return this.httpClient.get<MentorDetails>(this.backendUrl + '/' + profileId)
       .pipe(
         map(
           result => {
