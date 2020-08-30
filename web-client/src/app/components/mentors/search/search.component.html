@@ -7,18 +7,18 @@
         <mat-card-content fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="center">
             <mat-form-field fxFlex="60" appearance="outline">
                 <mat-label>Qui ce que vous cherchez ?</mat-label>
-                <input matInput placeholder="Ex: java, photoshop, Marketing digital...">
+                <input matInput [(ngModel)]="searchText" placeholder="Ex: java, photoshop, Marketing digital...">
             </mat-form-field>
             <mat-form-field fxFlex="40" appearance="outline">
                 <mat-label>Categorie</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let category of categories" value="category">{{ category.categoryName }}</mat-option>
+                <mat-select [(ngModel)]="searchCategory">
+                    <mat-option *ngFor="let category of categories" [value]="category.categoryName">{{ category.categoryName }}</mat-option>
                 </mat-select>
             </mat-form-field>
         </mat-card-content>
         <mat-card-actions fxLayout="row" fxLayoutAlign="end">
-            <button mat-raised-button color="primary">Chercher</button>
+            <button mat-raised-button color="primary" (click)="onSearch()">Chercher</button>
         </mat-card-actions>
     </mat-card>
 </section>
-<app-mentor-items [mentors]='mentors'></app-mentor-items>
+<app-mentor-items [mentors]='filtredMentors'></app-mentor-items>
