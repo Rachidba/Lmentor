@@ -17,7 +17,7 @@
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
       <li *ngIf="!isAuth"><a routerLink="/register">S'inscrir</a></li>
       <li *ngIf="!isAuth"><a routerLink="/login">S'authentifier</a></li>
-      <li><a routerLink="/search">Chercher un mentor</a></li>
+      <li><a routerLink="/mentors">Chercher un mentor</a></li>
       <li *ngIf="isAuth"><a (click)="logout()">Se deconnecter</a></li>
     </ul>
   </div>

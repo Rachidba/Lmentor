@@ -1,0 +1,48 @@
+<div fxLayout="column" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-card class="example-card" fxFlex.xs="100" fxFlex.gt-xs="80" fxFlex.gt-sm="60">
+            <mat-card-header fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="">
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title fxLayout="row" fxLayoutAlign="center"><h1>{{ mentor.fullName }}</h1></mat-card-title>
+                <mat-card-subtitle fxLayout="row" fxLayoutAlign="center"><h2 style="text-align: center;">{{ mentor.title }}</h2></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutGap="5px" *ngIf="mentor.expertiseAreas.length > 0">
+                    <ul class="tags">
+                        <li><span class="tag isPrimary" color="primary"> {{ mentor.expertiseAreas[0].categoryName }} </span></li>
+                        <li *ngFor="let item of mentor.expertiseAreas"><span class="tag">{{ item.subcategoryName }}</span></li>
+                    </ul>
+                </div>
+                <p style="text-align: center; margin-top: 15px;">{{ mentor.description }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-card class="example-card" fxFlex.xs="100" fxFlex.gt-xs="80" fxFlex.gt-sm="60" fxLayout="column">
+            <h2 fxLayout="row" fxLayoutAlign="center start">Experiences</h2>
+            <div fxLayout="row">
+                <mat-card-header fxFlex="40">
+                    <mat-card-title>{{ mentor.experiences[0].role }}</mat-card-title>
+                    <mat-card-subtitle>{{ mentor.experiences[0].companyName }}  ({{ mentor.experiences[0].startYear }} - {{ mentor.experiences[0].endYear }})</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content fxFlex="60">
+                    <p>{{ mentor.experiences[0].description }}</p>
+                </mat-card-content>
+            </div>
+        </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-card class="example-card" fxFlex.xs="100" fxFlex.gt-xs="80" fxFlex.gt-sm="60" fxLayout="column">
+            <h2 fxLayout="row" fxLayoutAlign="center start">Education</h2>
+            <div fxLayout="row">
+                <mat-card-header fxFlex="40">
+                    <mat-card-title>{{ mentor.educations[0].degree }}</mat-card-title>
+                    <mat-card-subtitle>{{ mentor.educations[0].school }}  ({{ mentor.educations[0].startYear }} - {{ mentor.educations[0].endYear }})</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content fxFlex="60">
+                    <p>{{ mentor.educations[0].description }}</p>
+                </mat-card-content>
+            </div>
+        </mat-card>
+    </div>
+</div>

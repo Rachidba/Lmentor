@@ -16,7 +16,7 @@
         </mat-card-content>
         <mat-card-actions fxLayoutAlign="end">
             <button mat-button mat-raised-button disabled>Demander du mentoring</button>
-            <button mat-raised-button color="primary">Voire le profile</button>
+            <button mat-raised-button color="primary" [routerLink]="['/mentors/'+mentor.profileId]" routerLinkActive="router-link-active">Voire le profile</button>
         </mat-card-actions>
     </mat-card>
 </section>

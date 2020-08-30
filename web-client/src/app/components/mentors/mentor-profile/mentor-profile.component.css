@@ -1,0 +1,33 @@
+.example-header-image {
+    background-image: url(../../../../assets/img/generic-profile-avatar.png);
+    background-size: cover;
+    width: 10rem;
+    height: 10rem;
+}
+.tags {
+    list-style: none;
+    margin: 0;
+    overflow: hidden; 
+    padding: 0;
+}
+.tags li {
+    float: left; 
+}
+.tag {
+    background: #eee;
+    border-radius: 3px 0 0 3px;
+    color: #999;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+}
+
+.isPrimary {
+    background: #ff4081;
+    color: white;
+}
