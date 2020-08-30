@@ -45,12 +45,12 @@ public class MentorRestController {
     @ApiOperation(value = "Get mentor profile by id")
     @ApiResponses(value = {
             @ApiResponse(code = SC_FOUND, message = "Mentor returned"),
-            @ApiResponse(code = SC_NOT_FOUND, message = "Mentor not found")
+            @ApiResponse(code = SC_OK, message = "Mentor not found")
     })
     public ResponseEntity<MentorDetailsDto> getMentor(@PathVariable Integer mentorId) {
         var mentor = mentorService.getMentor(mentorId);
         if (mentor.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        return ResponseEntity.status(HttpStatus.FOUND).body(mentor.get());
+        return ResponseEntity.status(HttpStatus.OK).body(mentor.get());
     }
 
     @PostMapping
