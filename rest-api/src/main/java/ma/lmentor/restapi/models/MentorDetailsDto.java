@@ -1,6 +1,7 @@
 package ma.lmentor.restapi.models;
 
 import lombok.*;
+import ma.lmentor.restapi.entities.Subcategory;
 
 import java.util.Set;
 
@@ -14,17 +15,9 @@ public class MentorDetailsDto {
     private String fullName;
     private String title;
     private String description;
+    private String city;
     private boolean isProfileCompleted;
+    private Set<Subcategory> expertiseAreas;
     private Set<EducationDto> educations;
     private Set<ExperienceDto> experiences;
-
-    public MentorDetailsDto(Integer profileId,
-                            String fullName,
-                            String title,
-                            String description) {
-        this.profileId = profileId;
-        this.fullName = fullName;
-        this.title = title;
-        this.description = description;
-    }
 }
