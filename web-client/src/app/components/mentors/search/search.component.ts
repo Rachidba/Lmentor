@@ -12,49 +12,25 @@ import { Category } from 'src/app/models/Category.model';
 export class SearchComponent implements OnInit {
 
   categories: Category[];
-  mentors: MentorItem[];
-
-  // mentors = [
-  //   {
-  //     fullName: "Rachid BAAZIZ",
-  //     title: "Software engineer",  
-  //     description: "This is a description",
-  //     expertiseAreas: [
-  //       {
-  //         id: 2,
-  //         subcategoryName: "JAVA",
-  //         categoryName: "Programming"
-  //       }
-  //     ],
-  //     profileId: 1
-  //   },
-  //   {
-  //     fullName: "Oumaima DAHHOUM",
-  //     title: "Software engineer",  
-  //     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  //     expertiseAreas: [
-  //       {
-  //         id: 2,
-  //         subcategoryName: "JAVA",
-  //         categoryName: "Programming"
-  //       }
-  //     ],
-  //     profileId: 1
-  //   }
-  // ]
+  allMentors: MentorItem[];
+  filtredMentors: MentorItem[];
 
   constructor(private mentorService: MentorService, private categoryService: CategoryService) { }
+
+  searchCategory: string;
+  searchText: string;
 
   ngOnInit(): void {
     this.getMentors();
     this.getCategories();
   }
 
-  getMentors() {
+  private getMentors() : void {
     this.mentorService.getMentorsItems()
     .subscribe(
       res => {
-        this.mentors = res;
+        this.allMentors = res;
+        this.filtredMentors = res;
       }, 
       err => {
         console.log('Error: ', err)
@@ -62,7 +38,7 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  getCategories() {
+  private getCategories(): void {
     this.categoryService.getCategories()
     .subscribe(
       res => {
@@ -74,4 +50,15 @@ export class SearchComponent implements OnInit {
     );
   }
 
+  public onSearch(): void {
+    console.log(this.searchText);
+    console.log(this.searchCategory);
+    let tempMentors = this.allMentors;
+    if (this.searchCategory != null)
+      tempMentors = tempMentors.filter(mentor => mentor.expertiseAreas[0]?.categoryName === this.searchCategory);
+    if (this.searchText != null) {
+      tempMentors = tempMentors.filter(mentor => mentor.expertiseAreas.map(a => { return a.subcategoryName.toLowerCase }).includes(this.searchText.toLowerCase));
+    }
+    this.filtredMentors = tempMentors;
+  }
 }

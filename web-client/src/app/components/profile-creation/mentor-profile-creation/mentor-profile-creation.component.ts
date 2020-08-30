@@ -32,8 +32,8 @@ export class MentorProfileCreationComponent implements OnInit {
     this.personalInfosFormGroup = this.formbuilder.group({
       fName: ['', Validators.required],
       lName: ['', Validators.required],
-      phoneNumber: [''],
-      city: [''],
+      phoneNumber: ['', Validators.required],
+      city: ['', Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
     });
