@@ -20,7 +20,11 @@ public class Mentor extends Profile {
     private String title;
     private String description;
     private String city;
-    @OneToMany(targetEntity = Subcategory.class)
+    @ManyToMany
+    @JoinTable(
+            name = "mentor_subcategory",
+            joinColumns = @JoinColumn(name = "mentor_id"),
+            inverseJoinColumns = @JoinColumn(name = "subcategory_id"))
     private Set<Subcategory> expertiseAreas;
     @Column(name = "session_price")
     private double sessionPrice;
