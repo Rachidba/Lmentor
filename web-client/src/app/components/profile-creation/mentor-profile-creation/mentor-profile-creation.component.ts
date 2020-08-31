@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/models/Category.model';
 import { GenderType } from 'src/app/models/GenderType';
 import { MentorProfileVo } from 'src/app/models/MentorProfileVo';
@@ -26,7 +27,12 @@ export class MentorProfileCreationComponent implements OnInit {
   cities: string[];
   years: string[];
 
-  constructor(private categoryService: CategoryService, private mentorService: MentorService, private formbuilder: FormBuilder, private appSettrings: AppSettingsService) { }
+  constructor(private categoryService: CategoryService,
+    private mentorService: MentorService,
+    private formbuilder: FormBuilder,
+    private appSettrings: AppSettingsService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.personalInfosFormGroup = this.formbuilder.group({
@@ -35,7 +41,7 @@ export class MentorProfileCreationComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       city: ['', Validators.required],
       title: ['', Validators.required],
-      description: ['', Validators.required],
+      description: ['', [ Validators.required, Validators.minLength(100) ]],
     });
 
     this.educationInfosFormGroup = this.formbuilder.group({
@@ -90,11 +96,11 @@ export class MentorProfileCreationComponent implements OnInit {
       || this.expertiseInfosFormGroup.invalid)
       return;
       let mentorProfile = this.buildMentorProfile();
-    this.mentorService.completeCreation(mentorProfile);
+    //this.mentorService.completeCreation(mentorProfile);
 
     this.mentorService.completeCreation(mentorProfile).subscribe(
       res => {
-        console.log('Res: ', res)
+        this.router.navigate(['/me']);
       }, 
       err => {
         console.log('Error: ', err)
