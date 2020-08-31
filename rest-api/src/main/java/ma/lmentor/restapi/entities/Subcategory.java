@@ -2,6 +2,7 @@ package ma.lmentor.restapi.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "subcategories")
@@ -21,6 +22,9 @@ public class Subcategory {
     @ManyToOne
     @JoinColumn(name="category_id", nullable=false)
     private Category category;
+
+    @ManyToMany(mappedBy = "expertiseAreas")
+    private Set<Mentor> mentors;
 
     public Long getId() {
         return this.id;
