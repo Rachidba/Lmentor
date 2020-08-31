@@ -9,6 +9,7 @@ export interface MentorDetails {
     title: string;
     description: string;
     city: string;
+    isProfileCompleted: boolean;
     expertiseAreas: Subcategory[];
     educations: Eduction[];
     experiences: Experience[];

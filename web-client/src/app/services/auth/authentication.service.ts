@@ -64,6 +64,11 @@ export class AuthenticationService {
     return decodedToken.scopes[0];
   }
 
+  public isMentor() : boolean {
+    let role = this.getRole();
+    return (role.toString() === 'ROLE_MENTOR');
+  }
+
   public logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');

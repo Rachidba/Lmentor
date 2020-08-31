@@ -20,13 +20,13 @@
     <div fxLayout="row" fxLayoutAlign="center center">
         <mat-card class="example-card" fxFlex.xs="100" fxFlex.gt-xs="80" fxFlex.gt-sm="60" fxLayout="column">
             <h2 fxLayout="row" fxLayoutAlign="center start">Experiences</h2>
-            <div fxLayout="row">
+            <div fxLayout="row" *ngFor="let experience of mentor.experiences">
                 <mat-card-header fxFlex="40">
-                    <mat-card-title>{{ mentor.experiences[0].role }}</mat-card-title>
-                    <mat-card-subtitle>{{ mentor.experiences[0].companyName }}  ({{ mentor.experiences[0].startYear }} - {{ mentor.experiences[0].endYear }})</mat-card-subtitle>
+                    <mat-card-title>{{ experience.role }}</mat-card-title>
+                    <mat-card-subtitle>{{ experience.companyName }}  ({{ experience.startYear }} - {{ experience.endYear == -1 ? "En cours" :  experience.endYear }})</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content fxFlex="60">
-                    <p>{{ mentor.experiences[0].description }}</p>
+                    <p>{{ experience.description }}</p>
                 </mat-card-content>
             </div>
         </mat-card>
@@ -34,14 +34,14 @@
     <div fxLayout="row" fxLayoutAlign="center center">
         <mat-card class="example-card" fxFlex.xs="100" fxFlex.gt-xs="80" fxFlex.gt-sm="60" fxLayout="column">
             <h2 fxLayout="row" fxLayoutAlign="center start">Education</h2>
-            <div fxLayout="row">
+            <div fxLayout="row" *ngFor="let education of mentor.educations">
                 <mat-card-header fxFlex="40">
-                    <mat-card-title>{{ mentor.educations[0].degree }}</mat-card-title>
-                    <mat-card-subtitle>{{ mentor.educations[0].school }}  ({{ mentor.educations[0].startYear }} - {{ mentor.educations[0].endYear }})</mat-card-subtitle>
+                    <mat-card-title>{{ education.degree }}</mat-card-title>
+                    <mat-card-subtitle>{{ education.school }}  ({{ education.startYear }} - {{ education.endYear == -1 ? "En cours" :  education.endYear}})</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content fxFlex="60">
-                    <p>{{ mentor.educations[0].description }}</p>
-                </mat-card-content>
+                    <p>{{ education.description }}</p>
+                </mat-card-content> 
             </div>
         </mat-card>
     </div>

@@ -25,6 +25,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { CustomHttpInterceptor } from 'src/app/services/CustomHttpInterceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MentorProfileComponent } from './components/mentors/mentor-profile/mentor-profile.component';
+import { MyMentorProfileComponent } from './components/my-profile/my-mentor-profile/my-mentor-profile.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MentorProfileComponent } from './components/mentors/mentor-profile/ment
     StudentProfileCreationComponent,
     MentorProfileCreationComponent,
     MentorProfileComponent,
+    MyMentorProfileComponent,
     
   ],
   imports: [

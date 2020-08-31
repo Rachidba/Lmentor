@@ -5,6 +5,7 @@
             <ng-template matStepLabel>Informations personelles</ng-template>
             <div fxLayout="row" fxLayoutGap="5px">
                 <mat-form-field appearance="outline" fxFlex="50">
+                    <mat-label>Prenom</mat-label>
                     <input
                         type="text"
                         matInput
@@ -13,6 +14,7 @@
                     <mat-error *ngIf="personalFormControls.fName.errors?.required">Ce champ est obligatoire</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" fxFlex="50">
+                    <mat-label>Nom</mat-label>
                     <input 
                         type="text"
                         matInput
@@ -23,6 +25,7 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px">
                 <mat-form-field appearance="outline" fxFlex="50">
+                    <mat-label>Numero de telephone</mat-label>
                     <input
                         type="tel"
                         matInput
@@ -40,6 +43,7 @@
             </div>
             <div fxLayout="column">
                 <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Title</mat-label>
                     <input 
                         type="text"
                         matInput
@@ -48,6 +52,7 @@
                     <mat-error *ngIf="personalFormControls.title.errors?.required">Ce champ est obligatoire</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Presentation</mat-label>
                     <textarea 
                         type="text"
                         rows="4"
@@ -55,10 +60,14 @@
                         placeholder="Entrez votre description (Presentez vos competences et comment vous pouvez aider vos etudiants a attendre leurs objectifs)"
                         formControlName="description">
                     </textarea>
+                    <mat-hint align="start"><strong>Minimum 100 caracteres</strong> </mat-hint>
+                    <mat-hint align="end">{{ personalFormControls.description.value.length }} / 100</mat-hint>
+                    <mat-error *ngIf="personalFormControls.description.errors?.required">Ce champ est obligatoire</mat-error>
+                    <mat-error *ngIf="personalFormControls.description.errors?.minlength">Minimum 100 caracteres</mat-error>
                 </mat-form-field>
             </div>
             <div fxLayoutAlign="end">
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperNext color="primary" mat-raised-button>Next</button>
             </div>
         </form>
     </mat-step>
@@ -69,6 +78,7 @@
                 <h3>Entrer les informations sur votre dernier (ou courant) etudes</h3>
                 <div fxLayout="row" fxLayoutGap="5px">
                     <mat-form-field fxFlex="50" appearance="outline">
+                        <mat-label>Etablissement</mat-label>
                         <input 
                             type="text"
                             matInput
@@ -92,7 +102,6 @@
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de debut</mat-label>
                         <mat-select formControlName="startYear">
-                            <mat-option value="-1">Avant 2000</mat-option>
                             <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="educationFormControls.startYear.errors?.required">Ce champ est obligatoire</mat-error>
@@ -100,7 +109,7 @@
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de fin</mat-label>
                         <mat-select formControlName="endYear">
-                            <mat-option value="-1">Avant 2000</mat-option>
+                            <mat-option value="-1">En cours</mat-option>
                             <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="educationFormControls.endYear.errors?.required">Ce champ est obligatoire</mat-error>
@@ -108,19 +117,20 @@
                 </div>
                 <div>
                     <mat-form-field appearance="outline" fxFlex="100">
+                        <mat-label>Description</mat-label>
                         <textarea 
                             type="text"
                             rows="2"
                             matInput
-                            placeholder="Description"
+                            placeholder="Vous pouvez rajouter une description (optionnelle)"
                             formControlName="description">
                         </textarea>
                     </mat-form-field>
                 </div>
             </section>
-            <div fxLayoutAlign="end">
-                <button mat-button matStepperPrevious >Back</button>
-                <button mat-button matStepperNext>Next</button>
+            <div fxLayoutAlign="end" fxLayoutGap="10px">
+                <button mat-button matStepperPrevious color="primary" mat-raised-button>Back</button>
+                <button mat-button matStepperNext color="primary" mat-raised-button>Next</button>
             </div>
         </form>
     </mat-step>
@@ -128,9 +138,10 @@
         <form [formGroup]="professionalInfosFormGroup">
             <ng-template matStepLabel>Travail</ng-template>
             <section>
-                <h3>Entrer les informations sur votre dernier (ou acctuel) travaille</h3>
+                <h3>Entrez les informations sur votre dernier (ou acctuel) travaille</h3>
                 <div fxLayout="row" fxLayoutGap="5px">
                     <mat-form-field appearance="outline" fxFlex="50">
+                        <mat-label>Entreprise</mat-label>
                         <input 
                             type="text"
                             matInput
@@ -138,10 +149,11 @@
                             formControlName="companyName">
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="50">
+                        <mat-label>Poste occupé</mat-label>
                         <input 
                             type="text"
                             matInput
-                            placeholder="Post ocupe dans l'entreprise"
+                            placeholder="Poste occupé au sein de l'entreprise"
                             formControlName="role">
                     </mat-form-field>
                 </div>
@@ -149,40 +161,41 @@
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de debut</mat-label>
                         <mat-select formControlName="startYear">
-                            <mat-option value="-1">Avant 2000</mat-option>
                             <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="50">
                         <mat-label>Annee de fin</mat-label>
                         <mat-select formControlName="endYear">
-                            <mat-option value="-1">Avant 2000</mat-option>
+                            <mat-option value="-1">En cours</mat-option>
                             <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
                 <div fxLayout="column">
                     <mat-form-field appearance="outline">
+                        <mat-label>Description</mat-label>
                         <textarea 
                             type="text"
                             rows="2"
                             matInput
                             placeholder="Description"
-                            formControlName="description">
+                            formControlName="Vous pouvez rajouter une description (optionnelle)">
                         </textarea>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
+                        <mat-label>Profile Linkedin</mat-label>
                         <input 
                             type="text"
                             matInput
-                            placeholder="Linkedin URL"
+                            placeholder="Vous pouvez rajouter l'URL de votre profile Linkedin"
                             formControlName="linkedinUrl">
                     </mat-form-field>
                 </div>
             </section>
-            <div fxLayoutAlign="end">
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+            <div fxLayoutAlign="end" fxLayoutGap="10px">
+                <button mat-button matStepperPrevious color="primary" mat-raised-button>Back</button>
+                <button mat-button matStepperNext color="primary" mat-raised-button>Next</button>
             </div>
         </form>
     </mat-step>
@@ -190,24 +203,25 @@
         <form [formGroup]="expertiseInfosFormGroup">
             <ng-template matStepLabel>Domaine d'expertise</ng-template>
             <div fxLayout="column" fxLayoutGap="5px">
+                <h3>Entrez votre doamine d'experitse et vos competences</h3>
                 <mat-form-field appearance="outline" fxFlex="100">
-                    <mat-label>Category</mat-label>
+                    <mat-label>Domaine d'expertise</mat-label>
                     <mat-select formControlName="category" #c (selectionChange)="changeCategory(c.value)">
                         <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.categoryName }}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="experienceFormControls.category.errors?.required">Ce champ est obligatoire</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Skills</mat-label>
+                    <mat-label>Competences</mat-label>
                     <mat-select formControlName="subcategories" multiple>
                       <mat-option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{subcategory.subcategoryName}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="experienceFormControls.subcategories.errors?.required">Ce champ est obligatoire</mat-error>
                 </mat-form-field>
             </div>
-            <div fxLayoutAlign="end">
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="onSubmitForm()">Enregistrer</button>
+            <div fxLayoutAlign="end" fxLayoutGap="10px">
+                <button mat-button matStepperPrevious color="primary" mat-raised-button>Back</button>
+                <button mat-button (click)="onSubmitForm()" color="primary" mat-raised-button>Enregistrer</button>
             </div>
         </form>
     </mat-step>
