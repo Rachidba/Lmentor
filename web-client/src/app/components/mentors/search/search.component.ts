@@ -51,14 +51,12 @@ export class SearchComponent implements OnInit {
   }
 
   public onSearch(): void {
-    console.log(this.searchText);
-    console.log(this.searchCategory);
     let tempMentors = this.allMentors;
-    if (this.searchCategory != null)
+    if (this.searchCategory != 'all')
       tempMentors = tempMentors.filter(mentor => mentor.expertiseAreas[0]?.categoryName === this.searchCategory);
-    if (this.searchText != null) {
-      tempMentors = tempMentors.filter(mentor => mentor.expertiseAreas.map(a => { return a.subcategoryName.toLowerCase }).includes(this.searchText.toLowerCase));
-    }
+    // if (this.searchText != null) {
+    //   tempMentors = tempMentors.filter(mentor => mentor.expertiseAreas.map(a => { return a.subcategoryName.toLowerCase }).includes(this.searchText.toLowerCase));
+    // }
     this.filtredMentors = tempMentors;
   }
 }
