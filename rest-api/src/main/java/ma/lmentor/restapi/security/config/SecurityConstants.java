@@ -9,4 +9,5 @@ public class SecurityConstants {
     public static final String AUTHENTICATION_URL = "/api/auth/login";
     public static final String REFRESH_TOKEN_URL = "/api/auth/token";
     public static final String API_ROOT_URL = "/api/**";
+    public static final String EMAIL_CONFIRMATION_URL = "/api//auth/confirm-email";
 }

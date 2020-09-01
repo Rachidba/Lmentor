@@ -101,7 +101,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 new AntPathRequestMatcher(SecurityConstants.REFRESH_TOKEN_URL),
                 new AntPathRequestMatcher(SecurityConstants.CATEGORIES_URL, HttpMethod.GET.toString()),
                 new AntPathRequestMatcher(SecurityConstants.REGISTER_URL, HttpMethod.POST.toString()),
-                new AntPathRequestMatcher(SecurityConstants.MENTORS_URL, HttpMethod.GET.toString())
+                new AntPathRequestMatcher(SecurityConstants.MENTORS_URL, HttpMethod.GET.toString()),
+                new AntPathRequestMatcher(SecurityConstants.EMAIL_CONFIRMATION_URL, HttpMethod.GET.toString())
         );
 
         http

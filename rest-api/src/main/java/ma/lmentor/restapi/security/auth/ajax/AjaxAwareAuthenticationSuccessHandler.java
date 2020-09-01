@@ -45,18 +45,23 @@ public class AjaxAwareAuthenticationSuccessHandler implements AuthenticationSucc
                                         Authentication authentication) throws IOException, ServletException {
         UserContext userContext = (UserContext) authentication.getPrincipal();
         User currentUser = userService.get(userContext.getUsername()).get();
-        JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
-        JwtToken refreshToken = tokenFactory.createRefreshToken(userContext);
-        
-        Map<String, String> tokenMap = new HashMap<String, String>();
-        tokenMap.put("token", accessToken.getToken());
-        tokenMap.put("refreshToken", refreshToken.getToken());
-        tokenMap.put("isProfileCompleted", String.valueOf(currentUser.getProfile().isProfileCompleted()));
-        tokenMap.put("profileId", String.valueOf(currentUser.getProfile().getProfileId()));
 
-        response.setStatus(HttpStatus.OK.value());
-        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        mapper.writeValue(response.getWriter(), tokenMap);
+        if(currentUser.isEnabled()) {
+            JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
+            JwtToken refreshToken = tokenFactory.createRefreshToken(userContext);
+
+            Map<String, String> tokenMap = new HashMap<String, String>();
+            tokenMap.put("token", accessToken.getToken());
+            tokenMap.put("refreshToken", refreshToken.getToken());
+            tokenMap.put("isProfileCompleted", String.valueOf(currentUser.getProfile().isProfileCompleted()));
+            tokenMap.put("profileId", String.valueOf(currentUser.getProfile().getProfileId()));
+
+            response.setStatus(HttpStatus.OK.value());
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            mapper.writeValue(response.getWriter(), tokenMap);
+        } else {
+            response.setStatus(HttpStatus.LOCKED.value());
+        }
 
         clearAuthenticationAttributes(request);
     }

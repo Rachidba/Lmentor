@@ -5,14 +5,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import ma.lmentor.restapi.exceptions.EmailAlreadyExistsException;
+import ma.lmentor.restapi.exceptions.InvalidConfirmationTokenException;
 import ma.lmentor.restapi.services.RegistrationService;
 import ma.lmentor.restapi.vo.RegistrationVo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -40,6 +38,18 @@ public class RegistrationController {
             return ResponseEntity.ok().build();
         } catch (EmailAlreadyExistsException exception) {
             return new ResponseEntity(exception.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/auth/confirm-email")
+    public ResponseEntity confirmEmail(@RequestParam("token")String confirmationsToken) {
+        try {
+            this.registrationService.confirmEmail(confirmationsToken);
+            return ResponseEntity.ok().build();
+        } catch (InvalidConfirmationTokenException ex) {
+            return new ResponseEntity(ex.message, HttpStatus.BAD_REQUEST);
         }
     }
 }
