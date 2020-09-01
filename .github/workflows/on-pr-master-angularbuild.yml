@@ -29,5 +29,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install and npm run build
         run: |
-          npm --prefix /web-client i
-          npm --prefix /web-client run build:prod
+          npm i /web-client/
+          npm run build:prod /web-client/
