@@ -12,6 +12,7 @@
             <mat-form-field fxFlex="40" appearance="outline">
                 <mat-label>Categorie</mat-label>
                 <mat-select [(ngModel)]="searchCategory">
+                    <mat-option value="all">Toutes les categories</mat-option>
                     <mat-option *ngFor="let category of categories" [value]="category.categoryName">{{ category.categoryName }}</mat-option>
                 </mat-select>
             </mat-form-field>

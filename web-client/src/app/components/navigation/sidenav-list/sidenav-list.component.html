@@ -1,27 +1,31 @@
 <mat-nav-list>
+    <a *ngIf="isAuth && isMentor" mat-list-item (click)="myProfile()">
+      <mat-icon>account_circle</mat-icon>
+      <span class="nav-caption">Mon profile</span>
+    </a>
     <a *ngIf="!isAuth" mat-list-item routerLink="/register" (click)="onCloseSidenav()">
-      <mat-icon>face</mat-icon>
+      <mat-icon>groups</mat-icon>
       <span class="nav-caption">S'inscrir</span>
     </a>
     <a *ngIf="!isAuth" mat-list-item routerLink="/login" (click)="onCloseSidenav()">
-      <mat-icon>face</mat-icon>
+      <mat-icon>login</mat-icon>
       <span class="nav-caption">S'authentifier</span>
     </a>
     <a mat-list-item routerLink="/" (click)="onCloseSidenav()">
-      <mat-icon>face</mat-icon>
+      <mat-icon>help_outline</mat-icon>
       <span class="nav-caption">Comment ca marche</span>
     </a>
     <a mat-list-item routerLink="/mentors" (click)="onCloseSidenav()">
-      <mat-icon>face</mat-icon>
+      <mat-icon>person_search</mat-icon>
       <span class="nav-caption">Chercher un mentor</span>
     </a>
     <a mat-list-item *ngIf="!isAuth" routerLink="/register" (click)="onCloseSidenav()">
-      <mat-icon>face</mat-icon>
+      <mat-icon>groups</mat-icon>
       <span class="nav-caption">Devenir mentor</span>
     </a>
     <mat-list-item *ngIf="isAuth">
       <button mat-icon-button  (click)="logout()">
-        <mat-icon>eject</mat-icon>
+        <mat-icon>exit_to_app</mat-icon>
         <span class="nav-caption">Se deconnecter</span>
       </button>
     </mat-list-item>

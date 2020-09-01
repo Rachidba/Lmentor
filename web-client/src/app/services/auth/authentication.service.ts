@@ -60,13 +60,14 @@ export class AuthenticationService {
   public getRole() : RoleType {
     if (!this.isAuth) return null;
     let token = localStorage.getItem('token');
+    if(token == null) return null;
     let decodedToken = this.decoder.decodeToken(token);
     return decodedToken.scopes[0];
   }
 
   public isMentor() : boolean {
     let role = this.getRole();
-    return (role.toString() === 'ROLE_MENTOR');
+    return (role?.toString() === 'ROLE_MENTOR');
   }
 
   public logout(): void {
