@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +14,18 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   incorrectEmailOrPassword: boolean = false;
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) { }
+  inverifiedEmail: boolean = false;
+  commingFromEmailValidation: boolean = false;
+  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+    const token = this.route.snapshot.queryParamMap.get('fromConfirmation');
+    if (!!token && token == 'true')
+      this.commingFromEmailValidation = true;
   }
 
   get formControls() { return this.loginForm.controls; }
@@ -38,7 +43,11 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }, 
     (err: HttpErrorResponse) => {
-      this.incorrectEmailOrPassword = true;
+      if (err.status == 423) {
+        this.inverifiedEmail = true;
+      } else {
+        this.incorrectEmailOrPassword = true;
+      }
     });
   }
 }

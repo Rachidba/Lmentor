@@ -52,6 +52,23 @@ export class AuthenticationService {
     );
   }
 
+  public confirmEmail(token: string): Observable<any> {
+    const url = this.backendUrl + "/auth/confirm-email?token=" + token;
+    return this.httpClient
+      .get(url)
+      .pipe(
+        share(),
+        map(
+          result => {
+            return result;
+          }, 
+          err => {
+            return err;
+          }
+        )
+      );
+  }
+
   public logToken() : void {
     let token = localStorage.getItem('token');
     console.log(this.decoder.decodeToken(token));

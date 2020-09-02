@@ -26,6 +26,7 @@ import { CustomHttpInterceptor } from 'src/app/services/CustomHttpInterceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MentorProfileComponent } from './components/mentors/mentor-profile/mentor-profile.component';
 import { MyMentorProfileComponent } from './components/my-profile/my-mentor-profile/my-mentor-profile.component';
+import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-email.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MyMentorProfileComponent } from './components/my-profile/my-mentor-prof
     MentorProfileCreationComponent,
     MentorProfileComponent,
     MyMentorProfileComponent,
+    ConfirmEmailComponent,
     
   ],
   imports: [
