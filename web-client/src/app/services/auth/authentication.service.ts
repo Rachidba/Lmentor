@@ -53,11 +53,11 @@ export class AuthenticationService {
   }
 
   public confirmEmail(token: string): Observable<any> {
-    const url = "http://localhost:8080/api/auth/confirm-email?token=" + token;
+    const url = this.backendUrl + "/auth/confirm-email?token=" + token;
     return this.httpClient
       .get(url)
       .pipe(
-        share(), // <========== YOU HAVE TO SHARE THIS OBSERVABLE TO AVOID MULTIPLE REQUEST BEING SENT SIMULTANEOUSLY
+        share(),
         map(
           result => {
             return result;
