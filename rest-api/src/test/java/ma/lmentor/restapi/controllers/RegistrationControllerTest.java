@@ -63,21 +63,21 @@ public class RegistrationControllerTest extends AbstractTest {
         Assertions.assertTrue(errors.containsKey("email"));
     }
 
-    @Test
-    public void register_shouldReturn200_whenValidEmail() throws Exception {
-        var registerDto = new RegistrationVo();
-        registerDto.setEmail("rachidba@gmail.com");
-        registerDto.setPassword("password");
-        registerDto.setRole(RoleType.ROLE_MENTOR);
 
-        var url = "/api/auth/register";
-        var inputJson = super.mapToJson(registerDto);
-        var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(inputJson))
-                .andReturn();
-
-        var response = mvcResult.getResponse();
-        Assertions.assertEquals(200, response.getStatus());
-    }
+//    public void register_shouldReturn200_whenValidEmail() throws Exception {
+//        var registerDto = new RegistrationVo();
+//        registerDto.setEmail("rachidba@gmail.com");
+//        registerDto.setPassword("password");
+//        registerDto.setRole(RoleType.ROLE_MENTOR);
+//
+//        var url = "/api/auth/register";
+//        var inputJson = super.mapToJson(registerDto);
+//        var mvcResult = this.mvc.perform(MockMvcRequestBuilders.post(url)
+//                .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                .content(inputJson))
+//                .andReturn();
+//
+//        var response = mvcResult.getResponse();
+//         Assertions.assertEquals(200, response.getStatus());
+//    }
 }

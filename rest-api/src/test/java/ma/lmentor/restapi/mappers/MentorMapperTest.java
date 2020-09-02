@@ -44,7 +44,6 @@ public class MentorMapperTest {
                 .title(title)
                 .description(description)
                 .city(city)
-                .sessionPrice(sessionPrice)
                 .build();
         var mentor = mentorMapper.toMentor(mentorData);
         Assertions.assertEquals(expectedMentor, mentor);
