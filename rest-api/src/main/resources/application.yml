@@ -9,12 +9,28 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       use-new-id-generator-mappings: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rachidbaaziz.contact@gmail.com
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
 
 api:
   version: v1
@@ -41,3 +57,5 @@ lmentor:
       refreshTokenExpTime: 131400 # 3 months
       tokenIssuer: http://lmentor.ma
       tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
+
+

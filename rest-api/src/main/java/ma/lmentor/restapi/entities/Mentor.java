@@ -26,23 +26,12 @@ public class Mentor extends Profile {
             joinColumns = @JoinColumn(name = "mentor_id"),
             inverseJoinColumns = @JoinColumn(name = "subcategory_id"))
     private Set<Subcategory> expertiseAreas;
-    @Column(name = "session_price")
-    private double sessionPrice;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
     private Set<Education> educations;
     @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER)
     private Set<Experience> experiences;
-    //Add linkedin profile
-    // Add birthday
-
-    // TODO Remove this
-    public Mentor(Integer profileId, User user, String firstName, String lastName, String phoneNumber,
-                             String title, String description, double sessionPrice) {
-        super(profileId, firstName, lastName, phoneNumber, false, user);
-        this.title = title;
-        this.description = description;
-        this.sessionPrice = sessionPrice;
-    }
+    @Column(name = "linkedin_url")
+    private String linkedinUrl;
 
     public Mentor(User user) {
         super(user);
