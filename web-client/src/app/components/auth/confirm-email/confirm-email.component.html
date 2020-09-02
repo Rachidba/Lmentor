@@ -1,0 +1,20 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 20px;">
+    <mat-card class="example-card" fxFlex.xs="100" fxFlex.gt-xs="80" fxFlex.gt-sm="60" fxFlex.gt-md="40">
+      <mat-card-header fxLayoutAlign="center">
+        <mat-card-title><h1>Email validation</h1></mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayoutAlign="center">
+        <mat-spinner *ngIf="validatingEmail"></mat-spinner>
+        <mat-card *ngIf="!validatingEmail" style="background-color: red; color: white; margin-bottom: 10px;">
+            <p style="text-align: center;">
+                Cannot verify your email!
+                <br>
+                Please try again or contact us at 
+                <a href = "mailto:contact@lmentor.ma?subject = Cannot verify email!">
+                    contact@lmentor.ma
+                </a>
+            </p>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>

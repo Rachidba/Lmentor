@@ -52,6 +52,23 @@ export class AuthenticationService {
     );
   }
 
+  public confirmEmail(token: string): Observable<any> {
+    const url = "http://localhost:8080/api/auth/confirm-email?token=" + token;
+    return this.httpClient
+      .get(url)
+      .pipe(
+        share(), // <========== YOU HAVE TO SHARE THIS OBSERVABLE TO AVOID MULTIPLE REQUEST BEING SENT SIMULTANEOUSLY
+        map(
+          result => {
+            return result;
+          }, 
+          err => {
+            return err;
+          }
+        )
+      );
+  }
+
   public logToken() : void {
     let token = localStorage.getItem('token');
     console.log(this.decoder.decodeToken(token));
