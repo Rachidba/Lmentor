@@ -69,7 +69,7 @@ public class RegistrationService {
         mailMessage.setSubject("Lmentor.ma Complete Registration!");
         mailMessage.setFrom("rachidbaaziz.contact@gmail.com");
         mailMessage.setText("To confirm your account, please click here : "
-                +"http://161.97.98.232/confirm-email?token="+confirmationToken.getConfirmationToken());
+                +"http://lmentor.ma/confirm-email?token="+confirmationToken.getConfirmationToken());
 
         emailSenderService.sendEmail(mailMessage);
     }
