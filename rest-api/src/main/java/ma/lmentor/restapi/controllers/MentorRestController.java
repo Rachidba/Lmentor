@@ -9,6 +9,8 @@ import ma.lmentor.restapi.vo.MentorProfileVo;
 import ma.lmentor.restapi.models.MentorDetailsDto;
 import ma.lmentor.restapi.models.MentorItemDto;
 import ma.lmentor.restapi.services.MentorService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +26,7 @@ import static javax.servlet.http.HttpServletResponse.*;
 @Api(tags = "Mentor profile API")
 public class MentorRestController {
     private final MentorService mentorService;
-
+    Logger logger = LoggerFactory.getLogger(MentorRestController.class);
     public MentorRestController(MentorService mentorService) {
         this.mentorService = mentorService;
     }
@@ -36,6 +38,7 @@ public class MentorRestController {
             @ApiResponse(code = SC_NO_CONTENT, message = "Mentors list is empty")
     })
     public ResponseEntity<List<MentorItemDto>> getAllMentors() {
+        logger.info("Get all mentors called");
         var mentors = mentorService.getCompletedMentorProfiles();
         var httpStatus = mentors.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return ResponseEntity.status(httpStatus).body(mentors);
@@ -48,8 +51,12 @@ public class MentorRestController {
             @ApiResponse(code = SC_OK, message = "Mentor not found")
     })
     public ResponseEntity<MentorDetailsDto> getMentor(@PathVariable Integer mentorId) {
+        logger.info("Get mentor called with MentorId:" + mentorId);
         var mentor = mentorService.getMentor(mentorId);
-        if (mentor.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        if (mentor.isEmpty()) {
+            logger.info("Get mentor with MentorId:" + mentorId + " Not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
         return ResponseEntity.status(HttpStatus.OK).body(mentor.get());
     }
 
@@ -60,6 +67,7 @@ public class MentorRestController {
             @ApiResponse(code = SC_UNAUTHORIZED, message = "User not authorised to do this operation")
     })
     public ResponseEntity<MentorDetailsDto> createMentor(@Valid @RequestBody MentorProfileVo mentorData) {
+        logger.info("Create mentor called");
         Optional<MentorDetailsDto> saveResult = null;
         try {
             saveResult = this.mentorService.create(mentorData);

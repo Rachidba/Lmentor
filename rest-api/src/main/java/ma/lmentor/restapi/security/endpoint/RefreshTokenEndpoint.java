@@ -19,6 +19,8 @@ import ma.lmentor.restapi.security.model.token.JwtToken;
 import ma.lmentor.restapi.security.model.token.JwtTokenFactory;
 import ma.lmentor.restapi.security.model.token.RawAccessJwtToken;
 import ma.lmentor.restapi.security.model.token.RefreshToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -40,10 +42,13 @@ public class RefreshTokenEndpoint {
     @Autowired private UserDetailsService userService;
     @Autowired private TokenVerifier tokenVerifier;
     @Autowired @Qualifier("jwtHeaderTokenExtractor") private TokenExtractor tokenExtractor;
-    
+
+    Logger logger = LoggerFactory.getLogger(RefreshTokenEndpoint.class);
+
     @RequestMapping(value="/api/auth/token", method=RequestMethod.GET, produces={ MediaType.APPLICATION_JSON_VALUE })
     public @ResponseBody
     JwtToken refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+       logger.info("Refresh token called");
         String tokenPayload = tokenExtractor.extract(request.getHeader(SecurityConstants.AUTHENTICATION_HEADER_NAME));
         
         RawAccessJwtToken rawToken = new RawAccessJwtToken(tokenPayload);
@@ -55,6 +60,9 @@ public class RefreshTokenEndpoint {
         }
 
         String subject = refreshToken.getSubject();
+
+        logger.info("Refresh token called by user: " + subject);
+
         UserDetails user = userService.loadUserByUsername(subject);
 
         if (user.getAuthorities() == null) throw new InsufficientAuthenticationException("User has no roles assigned");
