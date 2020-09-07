@@ -48,15 +48,11 @@ public class AjaxLoginProcessingFilter extends AbstractAuthenticationProcessingF
             }
             throw new AuthMethodNotSupportedException("Authentication method not supported");
         }
-
         LoginRequest loginRequest = objectMapper.readValue(request.getReader(), LoginRequest.class);
-        
         if (StringUtils.isEmpty(loginRequest.getEmail()) || StringUtils.isEmpty(loginRequest.getPassword())) {
             throw new AuthenticationServiceException("Username or Password not provided");
         }
-
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
-
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getEmail().toLowerCase(), loginRequest.getPassword());
         return this.getAuthenticationManager().authenticate(token);
     }
 
