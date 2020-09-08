@@ -6,7 +6,7 @@
     <mat-card-content>
       <mat-card *ngIf="incorrectEmailOrPassword" style="background-color: red; color: white; margin-bottom: 10px;">Email ou mot de passe incorrect!</mat-card>
       <mat-card *ngIf="inverifiedEmail" style="background-color: red; color: white; margin-bottom: 10px;">Votre compte n'est pas verifie, merci de checker votre boite email afin de verifier valider votre compte!</mat-card>
-      <mat-card *ngIf="commingFromEmailValidation" style="background-color: orange; color: white; margin-bottom: 10px;">Votre email a été validé</mat-card>
+      <mat-card *ngIf="commingFromEmailValidation" style="background-color: #ff4081; color: white; margin-bottom: 10px;">Votre email a été validé</mat-card>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column">
         <mat-form-field class="full-width" appearance="outline"  fxFlex="80">
           <mat-label>Email</mat-label>

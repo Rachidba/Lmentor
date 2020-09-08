@@ -12,7 +12,7 @@
                     <li *ngFor="let item of mentor.expertiseAreas"><span class="tag">{{ item.subcategoryName }}</span></li>
                 </ul>
             </div>
-            <p>{{ mentor.description }}</p>
+            <p>{{ mentor.description.length <= 350 ? mentor.description : mentor.description.substring(0, 350).concat('...') }}</p>
         </mat-card-content>
         <mat-card-actions fxLayoutAlign="end">
             <button mat-button mat-raised-button disabled>Demander du mentoring</button>
