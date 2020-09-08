@@ -18,6 +18,7 @@ public class Mentor extends Profile {
     @Enumerated(EnumType.STRING)
     private GenderType gender;
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String city;
     @ManyToMany
