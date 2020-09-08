@@ -6,7 +6,7 @@
     <mat-card-content>
       <mat-card *ngIf="emailAlreadyExists" style="background-color: red; color: white; margin-bottom: 10px;">Cet email exist deja, choisissez un autre!</mat-card>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"  fxLayout="column">
-        <div fxLayout="column">
+        <!-- <div fxLayout="column">
           <label>Type du compte a creer: </label>
           <mat-radio-group formControlName="accountType" fxLayout="column" style="margin-left: 15px;margin-top:10px; margin-bottom: 10px;;">
             <mat-radio-button value="ROLE_MENTOR">Mentor</mat-radio-button>
@@ -15,7 +15,7 @@
               <mat-error *ngIf="formControls.accountType.errors.required">Il faut choisir le type du compte</mat-error>
             </mat-error>
           </mat-radio-group>
-        </div>
+        </div> -->
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Entrez votre email</mat-label>
           <input matInput type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">

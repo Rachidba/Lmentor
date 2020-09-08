@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MustMatch } from 'src/app/helpers/mustMatchValidator';
 import { AuthenticationService } from 'src/app/services/auth/authentication.service';
+import { RoleType } from 'src/app/models/RoleType';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      accountType: ['', Validators.required],
+      // accountType: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -41,7 +42,8 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.register({
       email: this.registerForm.controls.email.value,
       password: this.registerForm.controls.password.value,
-      role: this.registerForm.controls.accountType.value
+      role: RoleType.ROLE_MENTOR
+      // role: this.registerForm.controls.accountType.value
     }).subscribe(
       res => {
         this.snackBar.open("Votre compte a bien été créé", "S'authentifier", {

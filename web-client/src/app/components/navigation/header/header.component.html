@@ -15,7 +15,7 @@
   </div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-      <li *ngIf="!isAuth"><a routerLink="/register">S'inscrir</a></li>
+      <!-- <li *ngIf="!isAuth"><a routerLink="/register">S'inscrir</a></li> -->
       <li *ngIf="!isAuth"><a routerLink="/login">S'authentifier</a></li>
       <li><a routerLink="/mentors">Chercher un mentor</a></li>
       <li *ngIf="isAuth && isMentor"><a (click)="myProfile()">Mon profile</a></li>
