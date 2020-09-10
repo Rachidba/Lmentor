@@ -48,7 +48,7 @@ import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-e
   imports: [
     
     MaterialModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
